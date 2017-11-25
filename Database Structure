@@ -12,7 +12,7 @@ CREATE TABLE Employee
  Start_Date DATE,
  Phone_Num INT(12),
  PRIMARY KEY(ID),
- UNIQUE(SIN, Username, Password));
+ UNIQUE(SIN, Username));
  
 CREATE TABLE BodyMan
 (ID INT(10) NOT NULL, 
