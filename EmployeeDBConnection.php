@@ -1,6 +1,6 @@
 <?php
 $link = mysqli_connect("localhost", "root", "");
-mysqli_select_db($link, "cpsc471db");
+mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
 ?>
 
@@ -15,19 +15,20 @@ mysqli_select_db($link, "cpsc471db");
 		<meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
 	</head>
 
-	<head>
-		<center>
-			<h2>
-				Insert Employee
-			</h2>
-		</center>
-	</head>
-
 	<body>
 		<center>
 			<form name = "EmployeeInsertForm" action="" method="post">
-
 				<table>
+					<tr>
+						<td>
+							<font size = "5">
+								<b>
+									Insert Employee
+								</b>
+							</font>
+						</td>
+					</tr>
+
 					<tr>
 						<td>Enter ID</td>
 						<td><input type = "number" name = "Emp_ID" placeholder = "ID" maxlength = "10" max = "9999999999" required = "required"></td>
@@ -91,6 +92,32 @@ mysqli_select_db($link, "cpsc471db");
 					<tr>
 						<td colspan = "2" align = "center"><input type = "submit" name = "insertEmployeeSubmit" value = "insert"> </td>
 					</tr>
+
+
+				</table>
+			</form>
+			<form name = "EmployeeDeleteForm" action="" method="post">
+				<table>
+					<tr>
+						<td>
+							<br>
+							<font size = "5">
+								<b>
+									Delete Employee
+								</b>
+							</font>
+						</td>
+					</tr>
+
+
+					<tr>
+						<td>Enter ID</td>
+						<td><input type = "number" name = "Emp_ID_Delete" placeholder = "ID" maxlength = "10" max = "9999999999" required = "required"></td>
+					</tr>
+
+					<tr>
+						<td colspan = "2" align = "center"><input type = "submit" name = "deleteEmployeeSubmit" value = "delete"> </td>
+					</tr>
 				</table>
 			</form>
 
@@ -99,12 +126,11 @@ mysqli_select_db($link, "cpsc471db");
 				mysqli_query($link, "insert into Employee values('$_POST[Emp_ID]', '$_POST[Emp_SIN]', '$_POST[Emp_Username]', '$_POST[Emp_Password]', '$_POST[Emp_F_Name]', '$_POST[Emp_M_Init]', '$_POST[Emp_L_Name]', '$_POST[Emp_Sex]', '$_POST[Emp_Birth_Date]', '$_POST[Emp_Address]', '$_POST[Emp_Start_Date]', '$_POST[Emp_Phone_Num]')");
 			}
 
-
-
-
+			if(isset($_POST["deleteEmployeeSubmit"])) {
+				mysqli_query($link, "DELETE FROM employee WHERE employee.ID = '$_POST[Emp_ID_Delete]'");
+			}
 
 			?>
-
 
 
 		</center>
