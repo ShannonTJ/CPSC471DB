@@ -172,8 +172,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 			        default:
 			        	echo "error";
 			            break;
-    			}
-				//echo $_POST["Emp_type"];
+    				}
 			}
 
 			if(isset($_POST["deleteEmployeeSubmit"])) {
