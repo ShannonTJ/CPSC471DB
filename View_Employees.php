@@ -22,8 +22,6 @@ if(!$link) {
 			<tr>
 				<th>ID</th>
 				<th>SIN</th>
-				<th>Username</th>
-				<th>Password</th>
 				<th>F_Name</th>
 				<th>M_Init</th>
 				<th>L_Name</th>
@@ -45,10 +43,6 @@ if(!$link) {
 				echo "<td>".$employee['ID']."</td>";
 
 				echo "<td>".$employee['SIN']."</td>";
-
-				echo "<td>".$employee['Username']."</td>";
-
-				echo "<td>".$employee['Password']."</td>";
 
 				echo "<td>".$employee['F_Name']."</td>";
 
