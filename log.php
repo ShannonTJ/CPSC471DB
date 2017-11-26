@@ -1,13 +1,18 @@
 <?php
-$link = mysqli_connect("localhost", "root", "");
-mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
+$link = mysqli_connect("localhost", "root", "", "cpsc471db");
 
+if(!$link) {
+  die('Unable to connect'. mysqli_error($link));
+}
 ?>
 
 
 <!DOCTYPE html>
 <html>
   <center>
+    <h1>
+      <b>Login</b>
+    </h1>
     <form name="Login form" method="post" action="">
       <table>
         <tr>
@@ -28,12 +33,18 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
     <?php
 
-
+    $flag = True;
+    $query="SELECT * FROM employee";
+    $result = mysqli_query($link, $query);
 
     if(isset($_POST["submitLogin"])) {
-      if($_POST['pass'] == (mysqli_query($link, "SELECT Password FROM employee WHERE '$_POST[user]' = 'Username'"))) {
-        header('Location: Home.php');
-      } else {
+      while($employee=mysqli_fetch_assoc($result)) {
+        if($employee['Username'] == $_POST['user'] && $employee['Password'] == $_POST['pass']) {
+          $flag = False;
+          header('Location: Home.php');
+        }
+      }
+      if($flag == True){
         header('Location: FailedLog.php');
       }
     }
@@ -41,4 +52,3 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
     ?>
   </center>
 </html>
-
