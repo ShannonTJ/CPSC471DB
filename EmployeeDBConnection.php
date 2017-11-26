@@ -90,9 +90,44 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 					</tr>
 
 					<tr>
-						<td colspan = "2" align = "center"><input type = "submit" name = "insertEmployeeSubmit" value = "insert"> </td>
+						<td>Select One</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="radio" value="Emp_Bodyman" name="Emp_type" required="required">
+							<label for="Emp_Bodyman">Bodyman</label>
+						</td>
 					</tr>
 
+					<tr>
+						<td>
+							<input type="number" name="BM_Hourly_Wage" placeholder="hourly wage in $ (ex. 15)">
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="radio" value="Emp_Estimator" name="Emp_type">
+							<label for="Emp_Estimator">Estimator</label>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="number" name="Est_Salary" placeholder="Salary in $ (ex. 40000)">
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="radio" value="Emp_Neither" name="Emp_type">
+							<label for="Emp_Estimator">Neither</label>
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan = "2" align = "center"><input type = "submit" name = "insertEmployeeSubmit" value = "insert"> </td>
+					</tr>
 
 				</table>
 			</form>
@@ -124,6 +159,21 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 			<?php
 			if(isset($_POST["insertEmployeeSubmit"])) {
 				mysqli_query($link, "insert into Employee values('$_POST[Emp_ID]', '$_POST[Emp_SIN]', '$_POST[Emp_Username]', '$_POST[Emp_Password]', '$_POST[Emp_F_Name]', '$_POST[Emp_M_Init]', '$_POST[Emp_L_Name]', '$_POST[Emp_Sex]', '$_POST[Emp_Birth_Date]', '$_POST[Emp_Address]', '$_POST[Emp_Start_Date]', '$_POST[Emp_Phone_Num]')");
+	
+				switch($_POST['Emp_type']) {
+			        case "Emp_Bodyman":
+			            mysqli_query($link, "insert into Bodyman values('$_POST[Emp_ID]', '$_POST[BM_Hourly_Wage]')");
+			            break;
+			        case "Emp_Estimator":
+			            mysqli_query($link, "insert into Estimator values('$_POST[Emp_ID]', '$_POST[Est_Salary]')");
+			            break;
+			        case "Emp_Neither":
+			            break;
+			        default:
+			        	echo "error";
+			            break;
+    			}
+				//echo $_POST["Emp_type"];
 			}
 
 			if(isset($_POST["deleteEmployeeSubmit"])) {
