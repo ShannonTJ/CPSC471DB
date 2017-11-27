@@ -131,6 +131,132 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
 				</table>
 			</form>
+
+			<form name = "EmployeeModifyForm" action="" method="post">
+				<table>
+					<tr>
+						<td>
+							<font size = "5">
+								<b>
+									Modify Employee
+								</b>
+							</font>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Enter Original ID</td>
+						<td><input type = "number" name = "Emp_Org_ID" placeholder = "ID" maxlength = "10" max = "9999999999" required = "required"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New ID</td>
+						<td><input type = "number" name = "Emp_New_ID" placeholder = "ID" maxlength = "10" max = "9999999999"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New SIN</td>
+						<td><input type = "number" name = "Emp_New_SIN" placeholder = "123456789" maxlength = "9"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Username</td>
+						<td><input type = "text" name = "Emp__New_Username" placeholder = "Username" maxlength = "25"></td>
+					</tr>
+
+					<tr>
+						<td>Enter Old Password</td>
+						<td><input type = "password" name = "Emp_Old_Password" placeholder = "Password" maxlength = "25" required = "required"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Password</td>
+						<td><input type = "password" name = "Emp__New_Password" placeholder = "Password" maxlength = "25"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New First Name</td>
+						<td><input type = "text" name = "Emp_New_F_Name" placeholder = "First Name" maxlength = "25"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Middle Initial</td>
+						<td><input type = "text" name = "Emp_New_M_Init" placeholder = "Middle Initial" maxlength = "5"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Last Name</td>
+						<td><input type = "text" name = "Emp_New_L_Name" placeholder = "Last Name" maxlength = "25"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Sex</td>
+						<td><input type = "text" name = "Emp_New_Sex" placeholder = "Sex" maxlength = "10"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Birth Date</td>
+						<td><input type = "date" name = "Emp_New_Birth_Date"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Address</td>
+						<td><input type = "text" name = "Emp_New_Address" placeholder = "Address" maxlength = "200"></td>
+					</tr>
+
+						<tr>
+						<td>Enter New Start Date</td>
+						<td><input type = "date" name = "Emp_New_Start_Date"></td>
+					</tr>
+
+					<tr>
+						<td>Enter New Phone Number</td>
+						<td><input type = "number" name = "Emp_New_Phone_Num" placeholder = "4031234567" ></td>
+					</tr>
+
+					<tr>
+						<td>Select Updated position</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="radio" value="Emp_New_Bodyman" name="Emp_New_type">
+							<label for="Emp_New_Bodyman">Bodyman</label>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="number" name="BM_New_Hourly_Wage" placeholder="new hourly wage in $ (ex. 15)">
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="radio" value="Emp_New_Estimator" name="Emp_New_type">
+							<label for="Emp_New_Estimator">Estimator</label>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="number" name="Est_New_Salary" placeholder="New Salary in $ (ex. 40000)">
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<input type="radio" value="Emp_New_Neither" name="Emp_New_type">
+							<label for="Emp_New_Estimator">Neither</label>
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan = "2" align = "center"><input type = "submit" name = "modifyEmployeeSubmit" value = "Modify"> </td>
+					</tr>
+
+				</table>
+			</form>
+
 			<form name = "EmployeeDeleteForm" action="" method="post">
 				<table>
 					<tr>
@@ -172,11 +298,15 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 			        default:
 			        	echo "error";
 			            break;
-    				}
+    			}
 			}
 
 			if(isset($_POST["deleteEmployeeSubmit"])) {
 				mysqli_query($link, "DELETE FROM employee WHERE employee.ID = '$_POST[Emp_ID_Delete]'");
+			}
+
+			if(isset($_POST["modifyEmployeeSubmit"])) {
+				mysqli_query($link, "");
 			}
 
 			?>
