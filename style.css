@@ -1,0 +1,34 @@
+* {
+    background-color: #666666;
+}
+
+
+.column {
+    float: left;
+    width: 31%;
+    margin: 1%;
+    border: 1px solid #ff0000;
+    text-align: center;
+    border-radius: 25px;
+    color: black;
+}
+.heading{
+    text-align: center;
+}
+    
+.row:after {
+    content:"";
+    display: table;
+    clear: both; 
+}
+
+body { 
+    text-align: center; 
+}
+     /* center all items within body, this property is inherited */
+body > * { text-align: left; }
+     /* left-align the CONTENTS all items within body, additionally
+        you can add this text-align: left property to all elements
+        manually */
+form { display: inline-block; }
+     /* reduces the width of the form to only what is necessary */
