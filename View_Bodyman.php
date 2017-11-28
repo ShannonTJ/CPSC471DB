@@ -18,6 +18,10 @@ if(!$link) {
 		<meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
 	</head>
 	<body>
+		<form action ="View_Bodyman.php" method="GET">
+		<input type="text" name="search" placeholder="Enter a value"/>
+		<input type="submit" value="Search"/>
+		</form>
 		<table width="200" border="1" cellpadding="1" cellspacing="1">
 			<tr>
 				<th>ID</th>
@@ -25,19 +29,52 @@ if(!$link) {
 			</tr>
 
 			<?php
+			
+			$search = $_GET["search"];
+			//echo $search;
+			$search = mysqli_real_escape_string($link, $search);
+			//echo $search;
+			
+			$query = "SELECT * FROM Bodyman WHERE ID = $search or Hourly_Rate = $search";
+			//echo $query;
+			
+			//If there are results...
+			if($result = mysqli_query($link, $query))
+			{
+				//Print search results
+				while($bodyman=mysqli_fetch_assoc($result)) 
+				{
+					echo "<tr>";
 
-			$query="SELECT * FROM Bodyman";
-			$result = mysqli_query($link, $query);
+					echo "<td>".$bodyman['ID']."</td>";
+
+					echo "<td>".$bodyman['Hourly_Rate']."</td>";
+
+					echo "</tr>";
+				}
+				//End While
 				
-			while($bodyman=mysqli_fetch_assoc($result)) {
-				echo "<tr>";
+			}
+			else if($search != NULL)
+			{
+				echo "No results found.";
+			}
 
-				echo "<td>".$bodyman['ID']."</td>";
+			else if($search == NULL)
+			{
+				$query="SELECT * FROM Bodyman";
+				$result = mysqli_query($link, $query);
+		
+				while($bodyman=mysqli_fetch_assoc($result)) {
+					echo "<tr>";
 
-				echo "<td>".$bodyman['Hourly_Rate']."</td>";
+					echo "<td>".$bodyman['ID']."</td>";
 
-				echo "</tr>";
-			} //End While
+					echo "<td>".$bodyman['Hourly_Rate']."</td>";
+
+					echo "</tr>";
+				} //End While
+			}
 			?>
 		</table>
 	</body>
