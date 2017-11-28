@@ -2,33 +2,54 @@
     background-color: #666666;
 }
 
+.estimate table { 
+   width: 50%; 
+   margin: auto;
+   margin-top: 2%;
+   font-size: 20px;
+   border: 2px solid #e81313;
+   padding: 2% 5% 2% 5%;
+   border-radius: 25px;
+}
 
 .column {
-    float: left;
-    width: 31%;
-    margin: 1%;
-    border: 1px solid #ff0000;
+    float:left;
+    width: 33.33%;
+    /*border: 1px solid #ff0000;*/
     text-align: center;
-    border-radius: 25px;
+    /*border-radius: 25px;*/
     color: black;
 }
-.heading{
+
+
+
+.col {
+    float:left;
+    width: 33%;
+    border: 1px solid #ff0000;
+    padding-right: 0%;
+    margin-right: 0%;
+    /*margin: 1%;
     text-align: center;
+    border-radius: 25px;
+    color: black;*/
 }
-    
 .row:after {
     content:"";
     display: table;
     clear: both; 
 }
 
-body { 
-    text-align: center; 
+.column img {
+    margin-top: 10%;
 }
-     /* center all items within body, this property is inherited */
-body > * { text-align: left; }
-     /* left-align the CONTENTS all items within body, additionally
-        you can add this text-align: left property to all elements
-        manually */
-form { display: inline-block; }
-     /* reduces the width of the form to only what is necessary */
+
+.heading{
+    text-align: center;
+}
+ 
+.heading img {
+    margin-top: 2%;
+    height: 5%;
+    width: 20%;
+}
