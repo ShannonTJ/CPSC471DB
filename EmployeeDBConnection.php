@@ -145,13 +145,14 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 					</tr>
 
 					<tr>
-						<td>Enter Original ID</td>
-						<td><input type = "number" name = "Emp_Org_ID" placeholder = "ID" maxlength = "10" max = "9999999999" required = "required"></td>
+						<td>Enter Old Username</td>
+						<td><input type = "text" name = "Emp_Old_Username" placeholder = "Username" maxlength = "25" required="
+						required"></td>
 					</tr>
 
 					<tr>
-						<td>Enter New ID</td>
-						<td><input type = "number" name = "Emp_New_ID" placeholder = "ID" maxlength = "10" max = "9999999999"></td>
+						<td>Enter Old Password</td>
+						<td><input type = "password" name = "Emp_Old_Password" placeholder = "Password" maxlength = "25" required = "required"></td>
 					</tr>
 
 					<tr>
@@ -161,17 +162,12 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
 					<tr>
 						<td>Enter New Username</td>
-						<td><input type = "text" name = "Emp__New_Username" placeholder = "Username" maxlength = "25"></td>
-					</tr>
-
-					<tr>
-						<td>Enter Old Password</td>
-						<td><input type = "password" name = "Emp_Old_Password" placeholder = "Password" maxlength = "25" required = "required"></td>
+						<td><input type = "text" name = "Emp_New_Username" placeholder = "Username" maxlength = "25"></td>
 					</tr>
 
 					<tr>
 						<td>Enter New Password</td>
-						<td><input type = "password" name = "Emp__New_Password" placeholder = "Password" maxlength = "25"></td>
+						<td><input type = "password" name = "Emp_New_Password" placeholder = "Password" maxlength = "25"></td>
 					</tr>
 
 					<tr>
@@ -283,6 +279,10 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 			</form>
 
 			<?php
+
+			$query = "SELECT * FROM employee";
+			$result = mysqli_query($link, $query);
+
 			if(isset($_POST["insertEmployeeSubmit"])) {
 				mysqli_query($link, "insert into Employee values('$_POST[Emp_ID]', '$_POST[Emp_SIN]', '$_POST[Emp_Username]', '$_POST[Emp_Password]', '$_POST[Emp_F_Name]', '$_POST[Emp_M_Init]', '$_POST[Emp_L_Name]', '$_POST[Emp_Sex]', '$_POST[Emp_Birth_Date]', '$_POST[Emp_Address]', '$_POST[Emp_Start_Date]', '$_POST[Emp_Phone_Num]')");
 	
@@ -306,12 +306,80 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 			}
 
 			if(isset($_POST["modifyEmployeeSubmit"])) {
-				mysqli_query($link, "");
+				$flag = True;
+				while($employee=mysqli_fetch_assoc($result)) {
+        			if($employee['Username'] == $_POST['Emp_Old_Username'] && $employee['Password'] == $_POST['Emp_Old_Password']) {
+          				$flag = False;
+          				if($_POST["Emp_New_SIN"] != "") {
+          					mysqli_query($link, "UPDATE employee SET SIN = '$_POST[Emp_New_SIN]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_Password"] != "") {
+          					mysqli_query($link, "UPDATE employee SET Password = '$_POST[Emp_New_Password]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_F_Name"] != "") {
+          					mysqli_query($link, "UPDATE employee SET F_Name = '$_POST[Emp_New_F_Name]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_M_Init"] != "") {
+          					mysqli_query($link, "UPDATE employee SET M_Init = '$_POST[Emp_New_M_Init]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_L_Name"] != "") {
+          					mysqli_query($link, "UPDATE employee SET L_Name = '$_POST[Emp_New_L_Name]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_Sex"] != "") {
+          					mysqli_query($link, "UPDATE employee SET Sex = '$_POST[Emp_New_Sex]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_Birth_Date"] != "") {
+          					mysqli_query($link, "UPDATE employee SET Birth_Date = '$_POST[Emp_New_Birth_Date]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_Address"] != "") {
+          					mysqli_query($link, "UPDATE employee SET Address = '$_POST[Emp_New_Address]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_Start_Date"] != "") {
+          					mysqli_query($link, "UPDATE employee SET Start_Date = '$_POST[Emp_New_Start_Date]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_Phone_Num"] != "") {
+          					mysqli_query($link, "UPDATE employee SET Phone_Num = '$_POST[Emp_New_Phone_Num]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				if($_POST["Emp_New_Username"] != "") {
+          					mysqli_query($link, "UPDATE employee SET Username = '$_POST[Emp_New_Username]' WHERE Username ='$_POST[Emp_Old_Username]'");
+          				}
+          				switch($_POST['Emp_New_type']) {
+			        		case "Emp_New_Bodyman":
+			        			if($_POST["BM_New_Hourly_Wage"] != "") {
+			        				mysqli_query($link, "DELETE FROM Bodyman WHERE Bodyman.ID = $employee[ID]");
+			        				mysqli_query($link, "DELETE FROM Estimator WHERE Estimator.ID = $employee[ID]");
+			            			mysqli_query($link, "INSERT into Bodyman values($employee[ID], '$_POST[BM_New_Hourly_Wage]')");
+			            			break;
+			        			}
+			        			mysqli_query($link, "DELETE FROM Estimator WHERE Estimator.ID = $employee[ID]");
+			        			mysqli_query($link, "INSERT into Bodyman values($employee[ID], '$_POST[BM_New_Hourly_Wage]')");
+			            		break;
+			        		case "Emp_New_Estimator":
+			        			if($_POST["Est_New_Salary"] != "") {
+			        				mysqli_query($link, "DELETE FROM Bodyman WHERE Bodyman.ID = $employee[ID]");
+			        				mysqli_query($link, "DELETE FROM Estimator WHERE Estimator.ID = $employee[ID]");
+			            			mysqli_query($link, "INSERT into Estimator values($employee[ID], '$_POST[Est_New_Salary]')");
+			            			break;
+			        			}
+			            		mysqli_query($link, "DELETE FROM Bodyman WHERE Bodyman.ID = $employee[ID]");
+			        			mysqli_query($link, "INSERT into Estimator values($employee[ID], '$_POST[Est_New_Salary]')");
+			            		break;
+			        		case "Emp_New_Neither":
+			        			mysqli_query($link, "DELETE FROM Bodyman WHERE Bodyman.ID = $employee[ID]");
+			        			mysqli_query($link, "DELETE FROM Estimator WHERE Estimator.ID = $employee[ID]");
+			            		break;
+			        		default:
+			            		break;
+    			}
+
+          			}
+          		}
+          		if($flag == True) {
+          			echo "TAKE TO INCCORECT USER / PASS page that try agains back to this page :)";
+          		}
 			}
 
 			?>
-
-
 		</center>
 	</body>
 </html>
