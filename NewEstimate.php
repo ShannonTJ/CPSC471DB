@@ -5,99 +5,73 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 ?>
 <html>
     <head>
-        <title>New Estimate</title>
+        <title>New Estimate </title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <div class = "heading">
             <img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png">
-            <h1> New Estimate </h1>
+            <h1> Customer Information </h1>
         </div>
-        <div class ="row">
-            <div class ="column">
-                <form name="InsertNewCustomer" action="" method="post">
-                    <table>
-                        <tr>
-                            <h3> Customer Information </h3>
-                        </tr>
-                        <tr>
-                            <td> First Name </td>
-                            <td><input type = "text" name = "fName" maxlength = "25" required = "required"></td>
-                        </tr>
-                        <tr>
-                            <td> Middle Initial</td>
-                            <td><input type = "text" name = "midinit"  maxlength = "1"></td>
-                        </tr>
-                        <tr>
-                            <td>Last Name</td>
-                            <td><input type = "text" name = "lName" maxlength = "25" required = "required"></td>
-                        </tr>
-                        <tr>
-                            <td>Phone Number</td>
-                            <td><input type = "tel" name = "phNum" required="required"></td>
-                        </tr>                
-                        <tr>
-                            <td>Address</td>
-                            <td><input type = "text" name = "addr" maxlength = "60" required = "required"></td>
-                        </tr>
-                        <tr>
-                            <td>Rental?</td>
-                            <td><input type="text" name="rental" maxlength="3" required="required"></td> 
-                        </tr>
-                        <tr>
-                            <td>Customer ID</td>
-                                <td><input type = "number" name = "custID" maxlength = "10" max = "9999999999" required = "required"></td>
-                        </tr>
-                    </table>
-                <!--</form>-->
-            </div>
-            <div class =" column">
-                 <!--<form name="InsertNewVehicle" action="" method="post">-->
-                    <table>
-                        <tr>
-                        <h3> Vehicle Information </h3>
-                        </tr>
+     
+        <div class="estimate">
+            <form name="InsertNewCustomer" action="" method="post">
+                <table>
+                    <tr> <td>Customer Information</td> </tr>
+                    <tr>
+                        <td> First Name </td>
+                        <td><input type = "text" name = "fName" maxlength = "25" required = "required"></td>  
+                        <td> Middle Initial</td>
+                        <td><input type = "text" name = "midinit"  maxlength = "1"></td>
+                    </tr> 
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type = "text" name = "lName" maxlength = "25" required = "required"></td>
+                        <td>Phone Number</td>
+                        <td><input type = "tel" name = "phNum" required="required"></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><input type = "text" name = "addr" maxlength = "60" required = "required"></td>
+                        <td>Rental?</td>
+                        <td><input type="text" name="rental" maxlength="3" required="required"></td> 
+                    </tr>
+                    <tr>
+                        <td>Customer ID</td>
+                        <td><input type = "number" name = "custID" maxlength = "10" max = "9999999999" required = "required"></td>
+                        
+                    </tr>
+                </table>
+              
+                <table>
+                    <tr> <td>Vehicle Information </td> </tr>
                         <tr>
                             <td> Plate Number </td>
                             <td><input type = "text" name = "plateNum" maxlength = "9" required = "required"></td>
-                        </tr>
-                        <tr>
                             <td> Color </td>
                             <td><input type = "text" name = "color"  maxlength = "20" required="required"></td>
                         </tr>
                         <tr>
                             <td>Type </td>
                             <td><input type = "text" name = "type" maxlength = "25" required = "required"></td>
-                        </tr>
-                        <tr>
                             <td>Make</td>
                             <td><input type = "text" name = "make" maxlength = "25" required ="required" ></td>
                         </tr>                
                         <tr>
                             <td>VIN</td>
                             <td><input type = "text" name = "vin" maxlength = "50" required = "required"></td>
-                        </tr>
-                        <tr>
                             <td>Year</td>
                             <td><input type="number" name="year" maxlength="5" required="required"></td> 
                         </tr>
                         <tr>
                             <td>Mileage</td>
-                                <td><input type = "number" name = "miles" maxlength = "15" max = "9999999999" required = "required"></td>
-                        </tr>
-                        <tr>
-                            <td><input type = "submit" name = "SubmitEstimate" value = "Submit"> </td>
+                            <td><input type = "number" name = "miles" maxlength = "15" max = "9999999999" required = "required"></td>
                         </tr>
                     </table>
-                 </form>
-            </div>       
-            <div class =" column">
-                <!--<form name="InsertNewInsurance" action="" method="post">
-                    <table>
-                        <tr>
-                                <h3> Insurance Information </h3>
-                        </tr>
+            
+                 <table>
+                     <tr> <td> Insurance Information </td> </tr>
                         <tr>
                             <td> Insurance Company </td>
                             <td><input type = "text" name = "Company" maxlength = "60" required = "required"></td>
@@ -119,19 +93,19 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                             <td><input type = "number" name = "claimNum" maxlength = "30"></td>
                         </tr>  
                         <tr>
-                            <td><input type = "submit" name = "SubmitEstimate" value = "Submit"> </td>
+                            <td><input type = "submit" name = "submitEstimate" value = "Submit"> </td>
                         </tr>
                     </table>
-                 </form> -->
-            </div>
+            </form>
         </div>
         <?php
-            if(isset($_POST["SubmitEstimate"])) {
-                mysqli_query($link, "INSERT into Customer VALUES('$_POST[custID]','$_POST[fName]', '$_POST[midinit]', '$_POST[lName]', '$_POST[phNum]', '$_POST[addr]', '$_POST[rental]')");
-                mysqli_query($link, "INSERT into Vehicle VALUES ('$_POST[plateNum]', $_POST[color]', '$_POST[type]', '$_POST[make]', '$_POST[vin]', '$_POST[year]', '$_POST[vin]', '$_POST[miles]')");
-                //mysqli_query($link, "insert into insurance values('$_POST[insID]','$_POST[Company]', '$_POST[iPNum]')");
-                //mysqli_query($link, "insert into insured_by values('$_POST[insID]','$_POST[plateNum]', '$_POST[claimNum]')");
-                //mysqli_query($link, "insert into insured_with values('$_POST[insID]','$_POST[custID]', '$_POST[deduct]')");
+    
+            if(isset($_POST["submitEstimate"])) {
+                mysqli_query($link, "INSERT into Insurance VALUES ('$_POST[insID]', '$_POST[Company]', '$_POST[iPNum]')");
+                mysqli_query($link, "INSERT into Customer VALUES ('$_POST[custID]', '$_POST[fName]', '$_POST[midinit]', '$_POST[lName]', '$_POST[phNum]', '$_POST[addr]', '$_POST[rental]')");
+                mysqli_query($link, "INSERT into vehicle VALUES('$_POST[plateNum]','$_POST[custID]', '$_POST[color]', '$_POST[type]', '$_POST[make]', '$_POST[vin]', '$_POST[year]', '$_POST[miles]')");
+                mysqli_query($link, "INSERT into insured_by VALUES ('$_POST[insID]', '$_POST[plateNum]', '$_POST[claimNum]')");
+                mysqli_query($link, "INSERT into insured_with VALUES ('$_POST[insID]', '$_POST[custID]', '$_POST[deduct]')");
             }
             
             ?>
