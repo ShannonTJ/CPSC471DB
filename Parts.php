@@ -160,7 +160,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 					</tr>
 
 					<tr>
-						<td colspan = "2" align = "center"><input type = "submit" name = "ModifyPartSubmit" value = "insert"> </td>
+						<td colspan = "2" align = "center"><input type = "submit" name = "ModifyPartSubmit" value = "Update"> </td>
 					</tr>
 
 				</table>
