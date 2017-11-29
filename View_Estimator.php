@@ -18,6 +18,10 @@ if(!$link) {
 		<meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
 	</head>
 	<body>
+		<form action ="View_Estimator.php" method="GET">
+		<input type="text" name="search" placeholder="Enter a value"/>
+		<input type="submit" value="Search"/>
+		</form>
 		<table width="200" border="1" cellpadding="1" cellspacing="1">
 			<tr>
 				<th>ID</th>
@@ -25,19 +29,48 @@ if(!$link) {
 			</tr>
 
 			<?php
-
-			$query="SELECT * FROM estimator";
-			$result = mysqli_query($link, $query);
+			//If the user performs a search
+			if(isset($_GET["search"]))
+			{
+				$search = $_GET["search"];
+				$search = mysqli_real_escape_string($link, $search);
 				
-			while($estimator=mysqli_fetch_assoc($result)) {
-				echo "<tr>";
+				$query = "SELECT * FROM estimator WHERE ID = $search or Salary = $search";
+				
+				//If there are results...
+				if(mysqli_query($link, $query))
+				{
+					$result = mysqli_query($link, $query);	
 
-				echo "<td>".$estimator['ID']."</td>";
+					while($estimator=mysqli_fetch_assoc($result)) 
+					{
+						echo "<tr>";
 
-				echo "<td>".$estimator['Hourly_Rate']."</td>";
+						echo "<td>".$estimator['ID']."</td>";
 
-				echo "</tr>";
-			} //End While
+						echo "<td>".$estimator['Salary']."</td>";
+
+						echo "</tr>";
+					} //End While					
+				}				
+			}
+
+			else
+			{
+				$query="SELECT * FROM estimator";
+				$result = mysqli_query($link, $query);
+					
+				while($estimator=mysqli_fetch_assoc($result)) 
+				{
+					echo "<tr>";
+
+					echo "<td>".$estimator['ID']."</td>";
+
+					echo "<td>".$estimator['Salary']."</td>";
+
+					echo "</tr>";
+				} //End While
+			}
 			?>
 		</table>
 	</body>
