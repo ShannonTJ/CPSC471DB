@@ -30,37 +30,39 @@ if(!$link) {
 
 			<?php
 			
-			$search = $_GET["search"];
-			//echo $search;
-			$search = mysqli_real_escape_string($link, $search);
-			//echo $search;
-			
-			$query = "SELECT * FROM Bodyman WHERE ID = $search or Hourly_Rate = $search";
-			//echo $query;
-			
-			//If there are results...
-			if($result = mysqli_query($link, $query))
+			//If the user performs a search
+			if(isset($_GET["search"]))
 			{
-				//Print search results
-				while($bodyman=mysqli_fetch_assoc($result)) 
-				{
-					echo "<tr>";
-
-					echo "<td>".$bodyman['ID']."</td>";
-
-					echo "<td>".$bodyman['Hourly_Rate']."</td>";
-
-					echo "</tr>";
-				}
-				//End While
+				$search = $_GET["search"];
+				$search = mysqli_real_escape_string($link, $search);
 				
-			}
-			else if($search != NULL)
-			{
-				echo "No results found.";
+				$query = "SELECT * FROM Bodyman WHERE ID = $search or Hourly_Rate = $search";
+				
+				//If there are results...
+				if($result = mysqli_query($link, $query))
+				{
+					//Print search results
+					while($bodyman=mysqli_fetch_assoc($result)) 
+					{
+						echo "<tr>";
+
+						echo "<td>".$bodyman['ID']."</td>";
+
+						echo "<td>".$bodyman['Hourly_Rate']."</td>";
+
+						echo "</tr>";
+					}
+					//End While
+					
+				}
+				else
+				{
+					echo "No results found.";
+				}
 			}
 
-			else if($search == NULL)
+			//Else user does not perform a search
+			else 
 			{
 				$query="SELECT * FROM Bodyman";
 				$result = mysqli_query($link, $query);
@@ -75,6 +77,7 @@ if(!$link) {
 					echo "</tr>";
 				} //End While
 			}
+			
 			?>
 		</table>
 	</body>
