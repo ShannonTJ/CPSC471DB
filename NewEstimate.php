@@ -106,8 +106,8 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 mysqli_query($link, "INSERT into vehicle VALUES('$_POST[plateNum]','$_POST[custID]', '$_POST[color]', '$_POST[type]', '$_POST[make]', '$_POST[vin]', '$_POST[year]', '$_POST[miles]')");
                 mysqli_query($link, "INSERT into insured_by VALUES ('$_POST[insID]', '$_POST[plateNum]', '$_POST[claimNum]')");
                 mysqli_query($link, "INSERT into insured_with VALUES ('$_POST[insID]', '$_POST[custID]', '$_POST[deduct]')");
+                header('Location: EstimateInfo.php');
             }
             
             ?>
     </body>
-</html>
