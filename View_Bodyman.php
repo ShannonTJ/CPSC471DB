@@ -39,8 +39,10 @@ if(!$link) {
 				$query = "SELECT * FROM Bodyman WHERE ID = $search or Hourly_Rate = $search";
 				
 				//If there are results...
-				if($result = mysqli_query($link, $query))
+				if(mysqli_query($link, $query))
 				{
+					$result = mysqli_query($link, $query);
+					
 					//Print search results
 					while($bodyman=mysqli_fetch_assoc($result)) 
 					{
@@ -52,12 +54,7 @@ if(!$link) {
 
 						echo "</tr>";
 					}
-					//End While
-					
-				}
-				else
-				{
-					echo "No results found.";
+					//End While		
 				}
 			}
 
