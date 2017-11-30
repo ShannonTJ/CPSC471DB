@@ -117,7 +117,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
             }
 
             if($check = False || $check2 = False) {
-                echo "TAKE TO INCCORECT ID or plateNum page that try agains back to this page :)";
+                echo 'Location: FailedEstimate.php';
             }
 
             while($est = mysqli_fetch_assoc($result)) {
@@ -144,7 +144,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 }
             }
             if($flag == True) {
-                echo "TAKE TO INCCORECT Est_Num page that try agains back to this page :)";
+                echo 'Location: FailedEstimate.php';
             }
         }
         
