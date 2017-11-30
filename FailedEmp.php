@@ -11,7 +11,7 @@
         </div>
         <div class =" failedEmp">
         <center>
-            <h2> Failed Login </h2>
+            <h2> Failed Insert, please enter in a unique SIN number and Username </h2>
                 <form action = "EmployeeDBConnection.php">
                     <input type = "submit" value = "Try Again">
                 </form>
