@@ -101,6 +101,26 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         <?php
     
             if(isset($_POST["submitEstimate"])) {
+                $check = True;
+
+                $query1 = "SELECT * FROM customer";
+                $result1 = mysqli_query($link, $query1);
+
+                $query2 = "SELECT * FROM vehicle";
+                $result2 = mysqli_query($link, $query2);
+
+                while($veh = mysqli_fetch_assoc($result2)) {
+                    if($veh['Plate_Num'] == $_POST['plateNum']) {
+                        $check = False;
+                        break;
+                    }
+                }
+
+                if($check = False) {
+                    echo 'Location: FailedGrpInsert.php';
+                }
+
+
                 mysqli_query($link, "INSERT into Insurance VALUES ('$_POST[insID]', '$_POST[Company]', '$_POST[iPNum]')");
                 mysqli_query($link, "INSERT into Customer VALUES ('$_POST[custID]', '$_POST[fName]', '$_POST[midinit]', '$_POST[lName]', '$_POST[phNum]', '$_POST[addr]', '$_POST[rental]')");
                 mysqli_query($link, "INSERT into vehicle VALUES('$_POST[plateNum]','$_POST[custID]', '$_POST[color]', '$_POST[type]', '$_POST[make]', '$_POST[vin]', '$_POST[year]', '$_POST[miles]')");
@@ -111,3 +131,4 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
             
             ?>
     </body>
+</html>
