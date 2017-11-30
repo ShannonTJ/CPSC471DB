@@ -12,12 +12,21 @@ if(!$link) {
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>
-			View Repair Order
-		</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
-	</head>
-	<body>
+                <title>View Parts </title>
+                <meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
+                <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+        <body>
+             <div class = "heading">
+                <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
+                <h1> Parts </h1>
+            </div>
+            <div class ="taskbar">
+            <a href="http://localhost/cpsc471/Parts.php">
+                    <img src="img/insert-modify-del-parts.png"> 
+            </a>
+            </div>
+            <div class ="tableview">
 		<table width="900" border="1" cellpadding="1" cellspacing="1">
 			<tr>
 				<th>RO_Num</th>
