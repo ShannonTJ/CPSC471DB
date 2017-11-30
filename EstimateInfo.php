@@ -83,8 +83,8 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                     }
                 }
 
-                while($est = mysqli_fetch_assoc($result)) {
-                    if($est['Est_Num'] == $_POST['est_num']) {
+                while($emp = mysqli_fetch_assoc($empResult)) {
+                    if($emp['ID'] == $_POST['est_id']) {
                         $check3 = True;
                         break;
                     }
@@ -101,3 +101,4 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
             ?>
     </body>
 
+</html>
