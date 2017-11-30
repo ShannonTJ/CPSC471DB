@@ -1,4 +1,5 @@
 <?php
+// Jaskaran, Lamess, Shannon
 $link = mysqli_connect("localhost", "root", "", "cpsc471db");
 
 if(!$link) {
