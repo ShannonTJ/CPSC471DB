@@ -83,7 +83,7 @@ if(!$link) {
 				echo "<td>".$WO['ID']."</td>";
 
 				echo "</tr>";
-			} //End While
+			} //End While loop
 			?>
 		</table>
 	</body>
