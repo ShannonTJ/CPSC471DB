@@ -298,7 +298,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                 if($check = False) {
                                     echo 'Location: FailedEmp.php';
                                 }
-                                
+
                                 mysqli_query($link, "insert into Employee values('$_POST[Emp_ID]', '$_POST[Emp_SIN]', '$_POST[Emp_Username]', '$_POST[Emp_Password]', '$_POST[Emp_F_Name]', '$_POST[Emp_M_Init]', '$_POST[Emp_L_Name]', '$_POST[Emp_Sex]', '$_POST[Emp_Birth_Date]', '$_POST[Emp_Address]', '$_POST[Emp_Start_Date]', '$_POST[Emp_Phone_Num]')");
 
                                 switch($_POST['Emp_type']) {
@@ -313,7 +313,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                 default:
                                         echo "error";
                                     break;
-                        }
+                                }
                         }
 
                         if(isset($_POST["deleteEmployeeSubmit"])) {
@@ -390,7 +390,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                 }
                         }
                         if($flag == True) {
-                                echo "TAKE TO INCCORECT USER / PASS page that try agains back to this page :)";
+                                echo 'Location: FailedEmp.php';;
                         }
                         }
 
