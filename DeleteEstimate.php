@@ -14,9 +14,13 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <div class = "heading">
+            <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
+        </div>
+        <div class ="estimate">
         <form name = "EstimateDeleteForm" action="" method="post">
                 <table>
-                    <h2> Delete Estimate </h2>
+                    <h2> <center> Delete Estimate </center> </h2>
                         <tr>
                                 <td>Enter Estimate Number</td>
                                 <td><input type = "number" name = "EstID" placeholder = "ID" maxlength = "10" max = "9999999999" required = "required"></td>
@@ -69,7 +73,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                     </tr>
             </table>
         </form>
-     
+        </div>
         <?php
 
         $query1 = "SELECT * FROM employee";

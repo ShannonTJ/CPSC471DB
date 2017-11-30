@@ -1,8 +1,10 @@
 * {
     background-color: #666666;
+    font-family: Roboto;
+    /*border: 1px solid #ff0000;*/
 }
 
-.estimate table { 
+.estimate table  { 
    width: 50%; 
    margin: auto;
    margin-top: 2%;
@@ -15,13 +17,9 @@
 .column {
     float:left;
     width: 33.33%;
-    /*border: 1px solid #ff0000;*/
     text-align: center;
-    /*border-radius: 25px;*/
     color: black;
 }
-
-
 
 .col {
     float:left;
@@ -29,10 +27,6 @@
     border: 1px solid #ff0000;
     padding-right: 0%;
     margin-right: 0%;
-    /*margin: 1%;
-    text-align: center;
-    border-radius: 25px;
-    color: black;*/
 }
 .row:after {
     content:"";
@@ -52,4 +46,51 @@
     margin-top: 2%;
     height: 5%;
     width: 20%;
+}
+
+.taskbar {
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.taskbar img {
+        margin: 0;
+}
+
+.tableview table {
+    width: 100%;
+}
+
+.login {
+    margin-top: 5%;
+    font-size: 20px;
+}
+
+.login input { 
+    width: 100%;
+    font-size: 20px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+
+
+.login input[type=submit] {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.failedlogin input[type=submit] {
+   width: 20%;
+   font-size: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

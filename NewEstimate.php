@@ -11,7 +11,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
     </head>
     <body>
         <div class = "heading">
-            <img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png">
+            <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
             <h1> Customer Information </h1>
         </div>
      

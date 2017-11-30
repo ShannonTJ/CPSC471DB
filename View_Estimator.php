@@ -16,8 +16,14 @@ if(!$link) {
 			View Estimator
 		</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
+                <link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
+            <div class = "heading">
+            <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
+            <h1> Estimator Information </h1>
+        </div>
+            <div class="tableview">
 		<form action ="View_Estimator.php" method="GET">
 		<input type="text" name="search" placeholder="Enter a value"/>
 		<input type="submit" value="Search"/>
@@ -73,5 +79,6 @@ if(!$link) {
 			}
 			?>
 		</table>
+            </div>
 	</body>
 </html>

@@ -2,7 +2,7 @@
 $link = mysqli_connect("localhost", "root", "", "cpsc471db");
 
 if(!$link) {
-	die('Unable to connect'. mysqli_error($link));
+        die('Unable to connect'. mysqli_error($link));
 }
 
 ?>
@@ -11,152 +11,164 @@ if(!$link) {
 
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>
-			View Employees
-		</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
-	</head>
-	<body>
-		<form action ="View_Employees.php" method="GET">
-		<input type="text" name="search" placeholder="Enter a value"/>
-		<input type="submit" value="Search"/>
-		</form>
-		<table width="1200" border="1" cellpadding="1" cellspacing="1">
-			<tr>
-				<th>ID</th>
-				<th>SIN</th>
-				<th>F_Name</th>
-				<th>M_Init</th>
-				<th>L_Name</th>
-				<th>Sex</th>
-				<th>Birth_Date</th>
-				<th>Address</th>
-				<th>Start_Date</th>
-				<th>Phone_Num</th>
-			</tr>
+        <head>
+                <title>
+                        View Employees
+                </title>
+                <meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
+                <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+        <body>
+            <div class = "heading">
+            <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
+            <h1> Employee Information </h1>
+        </div>
+            <div class="taskbar">
+                <a href="http://localhost/cpsc471/EmployeeDBConnection.php"><img src="img/insert-modify-del-emp.png"></a>
+                <a href="http://localhost/cpsc471/View_Bodyman.php"><img src="img/view-bodymen.png"></a>
+                <a href="http://localhost/cpsc471/View_Estimator.php"><img src="img/view-estimators.png"></a>
+                <form action ="View_Employees.php" method="GET">
+                <input type="text" name="search" placeholder="Enter a value"/>
+                <input type="submit" value="Search"/>
+                </form>
+            </div>
+            <div class ="tableview">
+                <table width="1200" border="1" cellpadding="1" cellspacing="1">
+                        <tr>
+                                <th>ID</th>
+                                <th>SIN</th>
+                                <th>F_Name</th>
+                                <th>M_Init</th>
+                                <th>L_Name</th>
+                                <th>Sex</th>
+                                <th>Birth_Date</th>
+                                <th>Address</th>
+                                <th>Start_Date</th>
+                                <th>Phone_Num</th>
+                        </tr>
 
-			<?php
+                        <?php
 
-			//If the user performs a search
-			if(isset($_GET["search"]))
-			{
-				$search = $_GET["search"];
-				$search = mysqli_real_escape_string($link, $search);
-				
-				$query = "SELECT * FROM employee WHERE ID = $search or SIN = $search or Phone_Num = $search";
-				
-				$query2 = "SELECT * FROM employee WHERE F_Name = '$search' or M_Init = '$search'
-				or L_Name = '$search' or Sex = '$search' or Birth_Date = '$search' or Address = '$search'";
-				
-				$query3 = "SELECT * FROM employee WHERE convert(varchar, Start_Date, 10) = '$search'";
-				echo $query3;
-					
-				//If there are results...
-				if(mysqli_query($link, $query))
-				{
-					$result = mysqli_query($link, $query);
-					
-					while($employee=mysqli_fetch_assoc($result)) 
-					{
-						echo "<tr>";
+                        //If the user performs a search
+                        if(isset($_GET["search"]))
+                        {
+                                $search = $_GET["search"];
+                                $search = mysqli_real_escape_string($link, $search);
 
-						echo "<td>".$employee['ID']."</td>";
+                                $query = "SELECT * FROM employee WHERE ID = $search or SIN = $search or Phone_Num = $search";
 
-						echo "<td>".$employee['SIN']."</td>";
+                                $query2 = "SELECT * FROM employee WHERE F_Name = '$search' or M_Init = '$search'
+                                or L_Name = '$search' or Sex = '$search' or Birth_Date = '$search' or Address = '$search'";
 
-						echo "<td>".$employee['F_Name']."</td>";
+                                $query3 = "SELECT * FROM employee WHERE convert(varchar, Start_Date, 10) = '$search'";
+                                echo $query3;
 
-						echo "<td>".$employee['M_Init']."</td>";
+                                //If there are results...
+                                if(mysqli_query($link, $query))
+                                {
+                                        $result = mysqli_query($link, $query);
 
-						echo "<td>".$employee['L_Name']."</td>";
+                                        while($employee=mysqli_fetch_assoc($result)) 
+                                        {
+                                                echo "<tr>";
 
-						echo "<td>".$employee['Sex']."</td>";
+                                                echo "<td>".$employee['ID']."</td>";
 
-						echo "<td>".$employee['Birth_Date']."</td>";
+                                                echo "<td>".$employee['SIN']."</td>";
 
-						echo "<td>".$employee['Address']."</td>";
+                                                echo "<td>".$employee['F_Name']."</td>";
 
-						echo "<td>".$employee['Start_Date']."</td>";
+                                                echo "<td>".$employee['M_Init']."</td>";
 
-						echo "<td>".$employee['Phone_Num']."</td>";
+                                                echo "<td>".$employee['L_Name']."</td>";
 
-						echo "</tr>";
-						//End While
-					}
-				}
-				else if(mysqli_query($link, $query2))
-				{
-					$result = mysqli_query($link, $query2);
-					
-					while($employee=mysqli_fetch_assoc($result)) 
-					{
-						echo "<tr>";
+                                                echo "<td>".$employee['Sex']."</td>";
 
-						echo "<td>".$employee['ID']."</td>";
+                                                echo "<td>".$employee['Birth_Date']."</td>";
 
-						echo "<td>".$employee['SIN']."</td>";
+                                                echo "<td>".$employee['Address']."</td>";
 
-						echo "<td>".$employee['F_Name']."</td>";
+                                                echo "<td>".$employee['Start_Date']."</td>";
 
-						echo "<td>".$employee['M_Init']."</td>";
+                                                echo "<td>".$employee['Phone_Num']."</td>";
 
-						echo "<td>".$employee['L_Name']."</td>";
+                                                echo "</tr>";
+                                                //End While
+                                        }
+                                }
+                                else if(mysqli_query($link, $query2))
+                                {
+                                        $result = mysqli_query($link, $query2);
 
-						echo "<td>".$employee['Sex']."</td>";
+                                        while($employee=mysqli_fetch_assoc($result)) 
+                                        {
+                                                echo "<tr>";
 
-						echo "<td>".$employee['Birth_Date']."</td>";
+                                                echo "<td>".$employee['ID']."</td>";
 
-						echo "<td>".$employee['Address']."</td>";
+                                                echo "<td>".$employee['SIN']."</td>";
 
-						echo "<td>".$employee['Start_Date']."</td>";
+                                                echo "<td>".$employee['F_Name']."</td>";
 
-						echo "<td>".$employee['Phone_Num']."</td>";
+                                                echo "<td>".$employee['M_Init']."</td>";
 
-						echo "</tr>";
-						//End While
-					}					
-				}
-				else if(mysqli_query($link, $query3))
-				{
-					$result = mysqli_query($link, $query3);	
-					echo "DIDIIIIT";
-				}			
-			}
+                                                echo "<td>".$employee['L_Name']."</td>";
 
-			else
-			{
-				$query="SELECT * FROM employee";
-				$result = mysqli_query($link, $query);
-					
-				while($employee=mysqli_fetch_assoc($result)) 
-				{
-					echo "<tr>";
+                                                echo "<td>".$employee['Sex']."</td>";
 
-					echo "<td>".$employee['ID']."</td>";
+                                                echo "<td>".$employee['Birth_Date']."</td>";
 
-					echo "<td>".$employee['SIN']."</td>";
+                                                echo "<td>".$employee['Address']."</td>";
 
-					echo "<td>".$employee['F_Name']."</td>";
+                                                echo "<td>".$employee['Start_Date']."</td>";
 
-					echo "<td>".$employee['M_Init']."</td>";
+                                                echo "<td>".$employee['Phone_Num']."</td>";
 
-					echo "<td>".$employee['L_Name']."</td>";
+                                                echo "</tr>";
+                                                //End While
+                                        }					
+                                }
+                                else if(mysqli_query($link, $query3))
+                                {
+                                        $result = mysqli_query($link, $query3);	
+                                        echo "DIDIIIIT";
+                                }			
+                        }
 
-					echo "<td>".$employee['Sex']."</td>";
+                        else
+                        {
+                                $query="SELECT * FROM employee";
+                                $result = mysqli_query($link, $query);
 
-					echo "<td>".$employee['Birth_Date']."</td>";
+                                while($employee=mysqli_fetch_assoc($result)) 
+                                {
+                                        echo "<tr>";
 
-					echo "<td>".$employee['Address']."</td>";
+                                        echo "<td>".$employee['ID']."</td>";
 
-					echo "<td>".$employee['Start_Date']."</td>";
+                                        echo "<td>".$employee['SIN']."</td>";
 
-					echo "<td>".$employee['Phone_Num']."</td>";
+                                        echo "<td>".$employee['F_Name']."</td>";
 
-					echo "</tr>";
-				} //End While
-			}
-			?>
-		</table>
-	</body>
+                                        echo "<td>".$employee['M_Init']."</td>";
+
+                                        echo "<td>".$employee['L_Name']."</td>";
+
+                                        echo "<td>".$employee['Sex']."</td>";
+
+                                        echo "<td>".$employee['Birth_Date']."</td>";
+
+                                        echo "<td>".$employee['Address']."</td>";
+
+                                        echo "<td>".$employee['Start_Date']."</td>";
+
+                                        echo "<td>".$employee['Phone_Num']."</td>";
+
+                                        echo "</tr>";
+                                } //End While
+                        }
+                        ?>
+                </table>
+            </div>
+        </body>
 </html>
