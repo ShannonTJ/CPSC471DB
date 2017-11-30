@@ -282,6 +282,23 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                         $result = mysqli_query($link, $query);
 
                         if(isset($_POST["insertEmployeeSubmit"])) {
+                                $check = True;
+
+                                while($emp = mysqli_fetch_assoc($result)) {
+                                    if($emp['SIN'] == $_POST['Emp_SIN']) {
+                                        $check = False;
+                                        break;
+                                    } 
+                                    if($emp['Username'] == $_POST['Emp_Username']) {
+                                        $check = False;
+                                        break;
+                                    } 
+                                }
+
+                                if($check = False) {
+                                    echo 'Location: FailedEmp.php';
+                                }
+                                
                                 mysqli_query($link, "insert into Employee values('$_POST[Emp_ID]', '$_POST[Emp_SIN]', '$_POST[Emp_Username]', '$_POST[Emp_Password]', '$_POST[Emp_F_Name]', '$_POST[Emp_M_Init]', '$_POST[Emp_L_Name]', '$_POST[Emp_Sex]', '$_POST[Emp_Birth_Date]', '$_POST[Emp_Address]', '$_POST[Emp_Start_Date]', '$_POST[Emp_Phone_Num]')");
 
                                 switch($_POST['Emp_type']) {
