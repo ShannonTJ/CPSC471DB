@@ -11,7 +11,7 @@
         </div>
         <div class =" failedEstChange">
         <center>
-            <h2> Failed Login </h2>
+            <h2> Failed Change, please enter in a valid ID, Plate Number and Est Number</h2>
                 <form action = "DeleteEstimate.php">
                     <input type = "submit" value = "Try Again">
                 </form>
