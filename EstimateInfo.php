@@ -56,6 +56,44 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         <?php
     
             if(isset($_POST["submitInfo"])) {
+                $check = True;
+                $check2 = False;
+                $check3 = False;
+
+                $query1 = "SELECT * FROM employee";
+                $empResult = mysqli_query($link, $query1);
+
+                $query2 = "SELECT * FROM vehicle";
+                $vehResult = mysqli_query($link, $query2);
+
+                $query = "SELECT * FROM estimate";
+                $result = mysqli_query($link, $query);
+
+                while($est = mysqli_fetch_assoc($result)) {
+                    if($est['Est_Num'] == $_POST['est_num']) {
+                        $check = False;
+                        break;
+                    }
+                }
+
+                while($veh = mysqli_fetch_assoc($vehResult)) {
+                    if($veh['Plate_Num'] == $_POST['plate_num']) {
+                        $check2 = True;
+                        break;
+                    }
+                }
+
+                while($est = mysqli_fetch_assoc($result)) {
+                    if($est['Est_Num'] == $_POST['est_num']) {
+                        $check3 = True;
+                        break;
+                    }
+                }
+
+                if($check = False || $check2 = False || $check3 = False) {
+                    echo 'Location: FailedEstInsert.php';
+                }
+
                 mysqli_query($link, "INSERT into estimate VALUES('$_POST[est_num]','$_POST[est_id]', '$_POST[plate_num]', '$_POST[job_class]', '$_POST[hours]', '$_POST[status]', '$_POST[cost]')");
                 header('Location: View_Estimate.php');
             }
