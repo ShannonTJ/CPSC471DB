@@ -11,7 +11,7 @@
         </div>
         <div class =" failedlogin">
         <center>
-            <h2> Failed Login </h2>
+            <h2> Failed Login, please try again </h2>
                 <form action = "log.php">
                     <input type = "submit" value = "Try Again">
                 </form>
