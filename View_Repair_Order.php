@@ -72,10 +72,10 @@ if(!$link) {
 
 			<?php
 
-			$query="SELECT * FROM works_on";
-			$result = mysqli_query($link, $query);
+			$query1="SELECT * FROM works_on";
+			$result1 = mysqli_query($link, $query1);
 				
-			while($WO=mysqli_fetch_assoc($result)) {
+			while($WO=mysqli_fetch_assoc($result1)) {
 				echo "<tr>";
 
 				echo "<td>".$WO['RO_Num']."</td>";
@@ -83,7 +83,7 @@ if(!$link) {
 				echo "<td>".$WO['ID']."</td>";
 
 				echo "</tr>";
-			} //End While loop
+			} //End While
 			?>
 		</table>
 	</body>
