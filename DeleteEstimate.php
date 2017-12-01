@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $link = mysqli_connect("localhost", "root", "");
 mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
