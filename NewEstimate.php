@@ -6,7 +6,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 ?>
 <html>
     <head>
-        <title>New Estimate </title>
+        <title>New Estimate</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
