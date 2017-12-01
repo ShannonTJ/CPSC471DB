@@ -7,8 +7,6 @@ if(!$link) {
 
 ?>
 
-
-
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -23,11 +21,13 @@ if(!$link) {
             <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
             <h1>  Bodymen Information </h1>
         </div>
-            <div class ="tableview">
+            <div class ="taskbar">
 		<form action ="View_Bodyman.php" method="GET">
 		<input type="text" name="search" placeholder="Enter a value"/>
 		<input type="submit" value="Search"/>
 		</form>
+            </div>
+                <div class ="tableview">
 		<table width="200" border="1" cellpadding="1" cellspacing="1">
 			<tr>
 				<th>ID</th>

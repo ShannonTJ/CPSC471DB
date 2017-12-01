@@ -20,7 +20,7 @@ if(!$link) {
         </head>
         <body>
             <div class = "heading">
-                <img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png">
+                <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
             </div>   
             <div class="tableview">
                 <table width="700" border="1" cellpadding="1" cellspacing="1">
