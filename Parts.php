@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $link = mysqli_connect("localhost", "root", "");
 mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
@@ -194,58 +195,91 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                         </form>
 
                         <?php
+                        $check = False;
+                        $check = False;
 
                         $query = "SELECT * FROM Parts";
                         $result = mysqli_query($link, $query);
 
+                        $query1 = "SELECT * FROM repair_order";
+                        $result1 = mysqli_query($link, $query1);
+
                         if(isset($_POST["insertPartSubmit"])) {
-                                mysqli_query($link, "INSERT into parts VALUES ('$_POST[Part_PO_Num]', '$_POST[Part_RO_Num]', '$_POST[Part_Part_Num]', '$_POST[Part_Type]', '$_POST[Part_Status]', '$_POST[Part_Desc]', '$_POST[Part_Order_Date]', '$_POST[Part_Arrival_Date]', '$_POST[Part_Invoice_Num]', '$_POST[Part_Returned]', '$_POST[Part_Cost]')");
+                            while($part = mysqli_fetch_assoc($result)) {
+                                if($part['PO_Num'] == $_POST['Part_PO_Num']) {
+                                    header('Location: FailedPart.php');
+                                } 
+                            }
+
+                            while($RO = mysqli_fetch_assoc($result1)) {
+                                if($RO['RO_Num'] == $_POST['Part_RO_Num']) {
+                                    $check2 = True;
+                                } 
+                            }
+
+                            if($check2 == False) {
+                                header('Location: FailedPart.php');
+                            }
+
+
+                            mysqli_query($link, "INSERT into parts VALUES ('$_POST[Part_PO_Num]', '$_POST[Part_RO_Num]', '$_POST[Part_Part_Num]', '$_POST[Part_Type]', '$_POST[Part_Status]', '$_POST[Part_Desc]', '$_POST[Part_Order_Date]', '$_POST[Part_Arrival_Date]', '$_POST[Part_Invoice_Num]', '$_POST[Part_Returned]', '$_POST[Part_Cost]')");
                         }
 
                         if(isset($_POST["deletePartSubmit"])) {
-                                mysqli_query($link, "DELETE FROM parts WHERE parts.PO_Num = '$_POST[Del_PO_Num]'");
+                            mysqli_query($link, "DELETE FROM parts WHERE parts.PO_Num = '$_POST[Del_PO_Num]'");
                         }
 
                         if(isset($_POST["ModifyPartSubmit"])) {
-                                $flag = True;
-                                while($part = mysqli_fetch_assoc($result)) {
-                                        if($part['PO_Num'] == $_POST['Old_PO_Num']) {
-                                                $flag = False;
-                                                if($_POST["New_RO_Num"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET RO_Num = '$_POST[New_RO_Num]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Part_Num"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET PartNum = '$_POST[New_Part_Num]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Type"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Type = '$_POST[New_Type]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Status"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Status = '$_POST[New_Status]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Desc"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Description = '$_POST[New_Desc]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Order_Date"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Order_Date = '$_POST[New_Order_Date]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Arrival_Date"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Arrival_Date = '$_POST[New_Arrival_Date]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Invoice_Num"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Invoice_Num = '$_POST[New_Invoice_Num]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Returned"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Returned = '$_POST[New_Cost]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
-                                                if($_POST["New_Cost"] != "") {
-                                                        mysqli_query($link, "UPDATE parts SET Cost = '$_POST[New_Cost]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
-                                                }
+                            $flag = True;
+
+                            while($ROz = mysqli_fetch_assoc($result1)) {
+                                if($ROz['RO_Num'] == $_POST['New_RO_Num']) {
+                                    $check = True;
+                                } 
+                            }
+
+                            if($check == False) {
+                                header('Location: FailedPart.php');
+                            }
+
+                            while($part = mysqli_fetch_assoc($result)) {
+                                    if($part['PO_Num'] == $_POST['Old_PO_Num']) {
+                                        $flag = False;
+                                        if($_POST["New_RO_Num"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET RO_Num = '$_POST[New_RO_Num]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
                                         }
+                                        if($_POST["New_Part_Num"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET PartNum = '$_POST[New_Part_Num]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Type"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Type = '$_POST[New_Type]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Status"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Status = '$_POST[New_Status]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Desc"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Description = '$_POST[New_Desc]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Order_Date"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Order_Date = '$_POST[New_Order_Date]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Arrival_Date"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Arrival_Date = '$_POST[New_Arrival_Date]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Invoice_Num"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Invoice_Num = '$_POST[New_Invoice_Num]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Returned"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Returned = '$_POST[New_Cost]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                        if($_POST["New_Cost"] != "") {
+                                            mysqli_query($link, "UPDATE parts SET Cost = '$_POST[New_Cost]' WHERE PO_Num ='$_POST[Old_PO_Num]'" );
+                                        }
+                                    }
                                 }
                                 if($flag == True) {
-                                echo "TAKE TO INCCORECT PO_Num page that try agains back to this page :)";
-                        }
+                                    header('Location: FailedPart.php');
+                            }
                         }
                         ?>
                 </center>
