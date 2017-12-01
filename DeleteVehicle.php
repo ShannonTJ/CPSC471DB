@@ -41,6 +41,11 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                     </tr>
 
                     <tr>
+                            <td>Enter New Plate Number</td>
+                            <td><input type = "text" name = "New_Plate_Num" placeholder = "ABC123" maxlength = "10"></td>
+                    </tr>
+
+                    <tr>
                             <td>Enter New Customer ID</td>
                             <td><input type = "number" name = "New_ID" placeholder = "ID" maxlength = "10" max = "9999999999"></td>
                     </tr>
@@ -86,7 +91,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         $query = "SELECT * FROM vehicle";
         $vehResult = mysqli_query($link, $query);
 
-        $query2 = "SELECT * FROM Customer";
+        $query2 = "SELECT * FROM customer";
         $custResult = mysqli_query($link, $query2);
 
 
@@ -98,33 +103,30 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         if(isset($_POST["UpdateVehicleSubmit"])) {
             $flag = True;
             $check = True;
-            $check2 = True;
 
             if($_POST["New_ID"] != "") {
+                $check = False;
                 while($cust = mysqli_fetch_assoc($custResult)) {
-                    if($cust['ID'] == $_POST['New_ID']) {
+                    if($cust['Cust_Num'] == $_POST['New_ID']) {
                         $check = True;
                         break;
                     }
                 }
-                $check = False;
             }
 
             if($_POST["New_Plate_Num"] != "") {
                 while($veh = mysqli_fetch_assoc($vehResult)) {
                     if($veh['Plate_Num'] == $_POST['New_Plate_Num']) {
-                        $check2 = True;
-                        break;
+                        header('Location: FailedVehicle.php');
                     }
                 }
-                $check2 = False;
             }
 
-            if($check == False || $check2 == False) {
+            if($check == False) {
                 header('Location: FailedVehicle.php');
             }
 
-            while($veh = mysqli_fetch_assoc($result)) {
+            while($veh = mysqli_fetch_assoc($vehResult)) {
                 if($veh['Plate_Num'] == $_POST['Old_Plate_Num']) {
                     $flag = False;
                     if($_POST["New_Plate_Num"] != "") {
