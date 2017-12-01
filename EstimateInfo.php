@@ -77,7 +77,6 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
                 while($veh = mysqli_fetch_assoc($vehResult)) {
                     if($veh['Plate_Num'] == $_POST['plate_num']) {
-                        echo " Hello123 ";
                         $check = True;
                         break;
                     }
@@ -85,14 +84,11 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
                 while($emp = mysqli_fetch_assoc($empResult)) {
                     if($emp['ID'] == $_POST['est_id']) {
-                        echo " Hello ";
                         $check2 = True;
                         break;
                     }
                 }
-                echo "Value: ".$check2;
                 if($check != True or $check2 != True) {
-                    echo " Hello xxx ";
                     header('Location: FailedEstInsert.php');
                 }
 
