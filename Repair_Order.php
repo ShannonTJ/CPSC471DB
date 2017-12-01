@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $link = mysqli_connect("localhost", "root", "");
 mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
@@ -80,7 +81,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                         </tr>
 
                                         <tr>
-                                                <td colspan = "2" align = "center"><input type = "submit" name = "insertROSubmit" value = "Update"> </td>
+                                                <td colspan = "2" align = "center"><input type = "submit" name = "insertROSubmit" value = "Insert"> </td>
                                         </tr>
 
                                 </table>
@@ -180,6 +181,9 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                         </form>
 
                         <?php
+                        $checking = False;
+                        $checking1 = False;
+
                         $query1 = "SELECT * FROM employee";
                         $empResult = mysqli_query($link, $query1);
 
@@ -190,76 +194,99 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                         $result = mysqli_query($link, $query);
 
                         if(isset($_POST["insertROSubmit"])) {
-                                mysqli_query($link, "INSERT into repair_order VALUES ('$_POST[RO_RO_Num]', '$_POST[RO_ID]', '$_POST[RO_Est_Num]', '$_POST[RO_Hours]', '$_POST[RO_Cost]', '$_POST[RO_Job_Class]', '$_POST[RO_Status]', '$_POST[RO_Sch_In]', '$_POST[RO_Sch_Out]')");
+                            while($RO = mysqli_fetch_assoc($result)) {
+                                if($RO['RO_Num'] == $_POST['RO_RO_Num']) {
+                                    header('Location: FailedRO.php');
+                                }
+                            }
 
-                                mysqli_query($link, "INSERT into works_on VALUES ('$_POST[RO_RO_Num]', '$_POST[RO_ID]')");
+                            while($emp = mysqli_fetch_assoc($empResult)) {
+                                if($emp['ID'] == $_POST['RO_ID']) {
+                                    $checking = True;
+                                }
+                            }
+
+                            while($est = mysqli_fetch_assoc($estResult)) {
+                                if($est['Est_Num'] == $_POST['RO_Est_Num']) {
+                                    $checking1 = True;
+                                }
+                            }
+
+                            if(checking == False || checking2 == False) {
+                                header('Location: FailedRO.php');
+                            }
+
+
+                            mysqli_query($link, "INSERT into repair_order VALUES ('$_POST[RO_RO_Num]', '$_POST[RO_ID]', '$_POST[RO_Est_Num]', '$_POST[RO_Hours]', '$_POST[RO_Cost]', '$_POST[RO_Job_Class]', '$_POST[RO_Status]', '$_POST[RO_Sch_In]', '$_POST[RO_Sch_Out]')");
+
+                            mysqli_query($link, "INSERT into works_on VALUES ('$_POST[RO_RO_Num]', '$_POST[RO_ID]')");
                         }
 
                         if(isset($_POST["deleteROSubmit"])) {
-                                mysqli_query($link, "DELETE FROM repair_order WHERE repair_order.RO_Num = '$_POST[Del_RO_Num]'");
+                            mysqli_query($link, "DELETE FROM repair_order WHERE repair_order.RO_Num = '$_POST[Del_RO_Num]'");
                         }
 
                         if(isset($_POST["UpdateROSubmit"])) {
-                                $flag = True;
-                                $check = True;
-                                $check2 = True;
+                            $flag = True;
+                            $check = True;
+                            $check2 = True;
 
-                                if($_POST["New_ID"] != "") {
-                                        while($emp = mysqli_fetch_assoc($empResult)) {
-                                                if($emp['ID'] == $_POST['New_ID']) {
-                                                        $check = True;
-                                                        break;
-                                                }
-                                        }
-                                        $check = False;
+                            if($_POST["New_ID"] != "") {
+                                while($emp = mysqli_fetch_assoc($empResult)) {
+                                    if($emp['ID'] == $_POST['New_ID']) {
+                                        $check = True;
+                                        break;
+                                    }
                                 }
+                                $check = False;
+                            }
 
-                                if($_POST["New_Est_Num"] != "") {
-                                        while($est = mysqli_fetch_assoc($estResult)) {
-                                                if($est['Est_Num'] == $_POST['New_Est_Num']) {
-                                                        $check2 = True;
-                                                        break;
-                                                }
-                                        }
-                                        $check2 = False;
+                            if($_POST["New_Est_Num"] != "") {
+                                while($est = mysqli_fetch_assoc($estResult)) {
+                                    if($est['Est_Num'] == $_POST['New_Est_Num']) {
+                                        $check2 = True;
+                                        break;
+                                    }
                                 }
+                                $check2 = False;
+                            }
 
-                                if($check = False || $check2 = False) {
-                                        echo "TAKE TO INCCORECT ID or estNum page that try agains back to this page :)";
-                                }
+                            if($check == False || $check2 == False) {
+                                header('Location: FailedRO.php');
+                            }
 
-                                while($RO = mysqli_fetch_assoc($result)) {
-                                        if($RO['RO_Num'] == $_POST['Old_RO_Num']) {
-                                                $flag = False;
-                                                if($_POST["New_ID"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET ID = '$_POST[New_ID]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                                if($_POST["New_Est_Num"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET PartNum = '$_POST[New_Est_Num]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                                if($_POST["New_Hours"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET Type = '$_POST[New_Hours]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                                if($_POST["New_Cost"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET Status = '$_POST[New_Cost]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                                if($_POST["New_Job_Class"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET Description = '$_POST[New_Job_Class]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                                if($_POST["New_Status"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET Order_Date = '$_POST[New_Status]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                                if($_POST["New_Sch_In"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET Arrival_Date = '$_POST[New_Sch_In]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                                if($_POST["New_Sch_Out"] != "") {
-                                                        mysqli_query($link, "UPDATE repair_order SET Invoice_Num = '$_POST[New_Sch_Out]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
-                                                }
-                                        }
+                            while($RO = mysqli_fetch_assoc($result)) {
+                                if($RO['RO_Num'] == $_POST['Old_RO_Num']) {
+                                    $flag = False;
+                                    if($_POST["New_ID"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET ID = '$_POST[New_ID]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
+                                    if($_POST["New_Est_Num"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET PartNum = '$_POST[New_Est_Num]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
+                                    if($_POST["New_Hours"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET Type = '$_POST[New_Hours]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
+                                    if($_POST["New_Cost"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET Status = '$_POST[New_Cost]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
+                                    if($_POST["New_Job_Class"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET Description = '$_POST[New_Job_Class]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
+                                    if($_POST["New_Status"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET Order_Date = '$_POST[New_Status]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
+                                    if($_POST["New_Sch_In"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET Arrival_Date = '$_POST[New_Sch_In]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
+                                    if($_POST["New_Sch_Out"] != "") {
+                                        mysqli_query($link, "UPDATE repair_order SET Invoice_Num = '$_POST[New_Sch_Out]' WHERE RO_Num ='$_POST[Old_RO_Num]'");
+                                    }
                                 }
-                                if($flag == True) {
-                                echo "TAKE TO INCCORECT RO_Num page that try agains back to this page :)";
-                        }
+                            }
+                            if($flag == True) {
+                                header('Location: FailedRO.php');
+                            }
                         }
 
                         ?>
