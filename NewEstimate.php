@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+ob_start();
 $link = mysqli_connect("localhost", "root", "");
 mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 ?>
@@ -112,21 +113,27 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 while($veh = mysqli_fetch_assoc($result2)) {
                     if($veh['Plate_Num'] == $_POST['plateNum']) {
                         $check = False;
+                        header ('Location: FailedGrpInsert.php');
                         break;
                     }
                 }
 
-                if($check = False) {
-                    echo 'Location: FailedGrpInsert.php';
+                while($cust = mysqli_fetch_assoc($result1)) {
+                    if($cust['Cust_Num'] == $_POST['custID']) {
+                        $check = False;
+                        header ('Location: FailedGrpInsert.php');
+                        break;
+                    }
                 }
-
 
                 mysqli_query($link, "INSERT into Insurance VALUES ('$_POST[insID]', '$_POST[Company]', '$_POST[iPNum]')");
                 mysqli_query($link, "INSERT into Customer VALUES ('$_POST[custID]', '$_POST[fName]', '$_POST[midinit]', '$_POST[lName]', '$_POST[phNum]', '$_POST[addr]', '$_POST[rental]')");
                 mysqli_query($link, "INSERT into vehicle VALUES('$_POST[plateNum]','$_POST[custID]', '$_POST[color]', '$_POST[type]', '$_POST[make]', '$_POST[vin]', '$_POST[year]', '$_POST[miles]')");
                 mysqli_query($link, "INSERT into insured_by VALUES ('$_POST[insID]', '$_POST[plateNum]', '$_POST[claimNum]')");
                 mysqli_query($link, "INSERT into insured_with VALUES ('$_POST[insID]', '$_POST[custID]', '$_POST[deduct]')");
-                header('Location: EstimateInfo.php');
+                if($check == True) {
+                    header('Location: EstimateInfo.php');
+                }
             }
             
             ?>
