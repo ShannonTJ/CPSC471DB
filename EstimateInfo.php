@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+ob_start();
 $link = mysqli_connect("localhost", "root", "");
 mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 ?>
@@ -56,9 +57,8 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         <?php
     
             if(isset($_POST["submitInfo"])) {
-                $check = True;
+                $check = False;
                 $check2 = False;
-                $check3 = False;
 
                 $query1 = "SELECT * FROM employee";
                 $empResult = mysqli_query($link, $query1);
@@ -71,31 +71,35 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
                 while($est = mysqli_fetch_assoc($result)) {
                     if($est['Est_Num'] == $_POST['est_num']) {
-                        $check = False;
-                        break;
+                        header('Location: FailedEstInsert.php');
                     }
                 }
 
                 while($veh = mysqli_fetch_assoc($vehResult)) {
                     if($veh['Plate_Num'] == $_POST['plate_num']) {
-                        $check2 = True;
+                        echo " Hello123 ";
+                        $check = True;
                         break;
                     }
                 }
 
                 while($emp = mysqli_fetch_assoc($empResult)) {
                     if($emp['ID'] == $_POST['est_id']) {
-                        $check3 = True;
+                        echo " Hello ";
+                        $check2 = True;
                         break;
                     }
                 }
-
-                if($check = False || $check2 = False || $check3 = False) {
-                    echo 'Location: FailedEstInsert.php';
+                echo "Value: ".$check2;
+                if($check != True or $check2 != True) {
+                    echo " Hello xxx ";
+                    header('Location: FailedEstInsert.php');
                 }
 
                 mysqli_query($link, "INSERT into estimate VALUES('$_POST[est_num]','$_POST[est_id]', '$_POST[plate_num]', '$_POST[job_class]', '$_POST[hours]', '$_POST[status]', '$_POST[cost]')");
-                header('Location: View_Estimate.php');
+                if($check == True and $check2 == True) {
+                    header('Location: View_Estimate.php');
+                }
             }
             
             ?>
