@@ -98,23 +98,23 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
             $check2 = True;
 
             if($_POST["New_ID"] != "") {
+                $check = False;
                 while($emp = mysqli_fetch_assoc($empResult)) {
                     if($emp['ID'] == $_POST['New_ID']) {
                         $check = True;
                         break;
                     }
                 }
-                $check = False;
             }
 
             if($_POST["New_Plate_Num"] != "") {
+                $check2 = False;
                 while($veh = mysqli_fetch_assoc($vehResult)) {
                     if($veh['Plate_Num'] == $_POST['New_Plate_Num']) {
                         $check2 = True;
                         break;
                     }
                 }
-                $check2 = False;
             }
 
             if($check == False || $check2 == False) {
