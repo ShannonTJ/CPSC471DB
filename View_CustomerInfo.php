@@ -26,10 +26,12 @@ if(!$link) {
             <div class="tableview">
                 <table width="700" border="1" cellpadding="1" cellspacing="1">
                     <h2> Customer Information </h2>  
+                    <div class="taskbar">
                     <form action ="View_CustomerInfo.php" method="GET">
 					<input type="text" name="search" placeholder="Enter a value"/>
 					<input type="submit" value="Search"/>
 					</form>  
+                    </div>
                     <tr>
                                 <th>Cust_Num</th>
                                 <th>F_Name</th>
@@ -133,10 +135,12 @@ if(!$link) {
 
                 <br>
                 <h2> Vehicle Information </h2>
+                <div class="taskbar">
                 <form action ="View_CustomerInfo.php" method="GET">
 				<input type="text" name="search2" placeholder="Enter a value"/>
 				<input type="submit" value="Search"/>
 				</form>
+                </div>
                 <table width="800" border="1" cellpadding="1" cellspacing="1">
                         <tr>
                                 <th>Plate_Num</th>
@@ -253,10 +257,12 @@ if(!$link) {
 
                 <br>
                 <h2> Insurance Information </h2>
+                <div class="taskbar">
 				<form action ="View_CustomerInfo.php" method="GET">
 				<input type="text" name="search3" placeholder="Enter a value"/>
 				<input type="submit" value="Search"/>
-				</form>               
+				</form>           
+                </div>
                 <table width="300" border="1" cellpadding="1" cellspacing="1">
                         <tr>
                                 <th>ID_Num</th>
@@ -334,10 +340,12 @@ if(!$link) {
 
                 <br>
                 <h2> Vehicle-Insurance Information </h2>
+                <div class="taskbar">
 				<form action ="View_CustomerInfo.php" method="GET">
 				<input type="text" name="search4" placeholder="Enter a value"/>
 				<input type="submit" value="Search"/>
-				</form>               
+				</form>  
+                </div>
                 <table width="300" border="1" cellpadding="1" cellspacing="1">
                         <tr>
                                 <th>ID_Num</th>
@@ -413,10 +421,12 @@ if(!$link) {
                 </table>
 
                 <h2> Customer-Insurance Information </h2>
+                <div class="taskbar">
 				<form action ="View_CustomerInfo.php" method="GET">
 				<input type="text" name="search5" placeholder="Enter a value"/>
 				<input type="submit" value="Search"/>
-				</form>               
+				</form>          
+                </div>
                 <br>
 
                 <table width="300" border="1" cellpadding="1" cellspacing="1">
