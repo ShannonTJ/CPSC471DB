@@ -27,6 +27,10 @@ if(!$link) {
             </a>
             </div>
             <div class ="tableview">
+			<form action ="View_Repair_Order.php" method="GET">
+			<input type="text" name="search" placeholder="Enter a value"/>
+			<input type="submit" value="Search"/>
+			</form>
 		<table width="900" border="1" cellpadding="1" cellspacing="1">
 			<tr>
 				<th>RO_Num</th>
@@ -41,38 +45,143 @@ if(!$link) {
 			</tr>
 
 			<?php
+			
+			//If the user performs a search
+            if(isset($_GET["search"]))
+            {
+                $search = $_GET["search"];
+                $search = mysqli_real_escape_string($link, $search);
 
-			$query="SELECT * FROM repair_order";
-			$result = mysqli_query($link, $query);
-				
-			while($RO=mysqli_fetch_assoc($result)) {
-				echo "<tr>";
+                $query = "SELECT * FROM repair_order WHERE RO_Num = $search or ID = $search or Est_Num = $search
+                or Hours = $search or Cost = $search";
 
-				echo "<td>".$RO['RO_Num']."</td>";
+                $query2 = "SELECT * FROM repair_order WHERE Job_Class = '$search' or Status = '$search'";
 
-				echo "<td>".$RO['ID']."</td>";
+                $query3 = "SELECT * FROM repair_order WHERE convert(varchar, Scheduled_In, 10) = '$search'";
+                
+                //If there are results...
+                if(mysqli_query($link, $query))
+                {
+					$result = mysqli_query($link, $query);
+					while($RO=mysqli_fetch_assoc($result)) {
+						echo "<tr>";
 
-				echo "<td>".$RO['Est_Num']."</td>";
+						echo "<td>".$RO['RO_Num']."</td>";
 
-				echo "<td>".$RO['Hours']."</td>";
+						echo "<td>".$RO['ID']."</td>";
 
-				echo "<td>".$RO['Cost']."</td>";
+						echo "<td>".$RO['Est_Num']."</td>";
 
-				echo "<td>".$RO['Job_Class']."</td>";
+						echo "<td>".$RO['Hours']."</td>";
 
-				echo "<td>".$RO['Status']."</td>";
+						echo "<td>".$RO['Cost']."</td>";
 
-				echo "<td>".$RO['Scheduled_In']."</td>";
+						echo "<td>".$RO['Job_Class']."</td>";
 
-				echo "<td>".$RO['Scheduled_Out']."</td>";
+						echo "<td>".$RO['Status']."</td>";
 
-				echo "</tr>";
-			} //End While
+						echo "<td>".$RO['Scheduled_In']."</td>";
+
+						echo "<td>".$RO['Scheduled_Out']."</td>";
+
+						echo "</tr>";
+					} //End While					
+				}
+				else if(mysqli_query($link, $query2))
+				{
+					$result = mysqli_query($link, $query2);	
+					while($RO=mysqli_fetch_assoc($result)) {
+						echo "<tr>";
+
+						echo "<td>".$RO['RO_Num']."</td>";
+
+						echo "<td>".$RO['ID']."</td>";
+
+						echo "<td>".$RO['Est_Num']."</td>";
+
+						echo "<td>".$RO['Hours']."</td>";
+
+						echo "<td>".$RO['Cost']."</td>";
+
+						echo "<td>".$RO['Job_Class']."</td>";
+
+						echo "<td>".$RO['Status']."</td>";
+
+						echo "<td>".$RO['Scheduled_In']."</td>";
+
+						echo "<td>".$RO['Scheduled_Out']."</td>";
+
+						echo "</tr>";
+					} //End While									
+				}
+				else if(mysqli_query($link, $query3))
+				{
+					$result = mysqli_query($link, $query3);		
+					
+					while($RO=mysqli_fetch_assoc($result)) {
+						echo "<tr>";
+
+						echo "<td>".$RO['RO_Num']."</td>";
+
+						echo "<td>".$RO['ID']."</td>";
+
+						echo "<td>".$RO['Est_Num']."</td>";
+
+						echo "<td>".$RO['Hours']."</td>";
+
+						echo "<td>".$RO['Cost']."</td>";
+
+						echo "<td>".$RO['Job_Class']."</td>";
+
+						echo "<td>".$RO['Status']."</td>";
+
+						echo "<td>".$RO['Scheduled_In']."</td>";
+
+						echo "<td>".$RO['Scheduled_Out']."</td>";
+
+						echo "</tr>";
+					} //End While								
+				}
+                
+			}
+
+			else
+			{
+				$query="SELECT * FROM repair_order";
+				$result = mysqli_query($link, $query);
+					
+				while($RO=mysqli_fetch_assoc($result)) {
+					echo "<tr>";
+
+					echo "<td>".$RO['RO_Num']."</td>";
+
+					echo "<td>".$RO['ID']."</td>";
+
+					echo "<td>".$RO['Est_Num']."</td>";
+
+					echo "<td>".$RO['Hours']."</td>";
+
+					echo "<td>".$RO['Cost']."</td>";
+
+					echo "<td>".$RO['Job_Class']."</td>";
+
+					echo "<td>".$RO['Status']."</td>";
+
+					echo "<td>".$RO['Scheduled_In']."</td>";
+
+					echo "<td>".$RO['Scheduled_Out']."</td>";
+
+					echo "</tr>";
+				} //End While
+			}
 			?>
 		</table>
 
 		<br>
-
+			<form action ="View_Repair_Order.php" method="GET">
+			<input type="text" name="search2" placeholder="Enter a value"/>
+			<input type="submit" value="Search"/>
+			</form>
 		<table width="200" border="1" cellpadding="1" cellspacing="1">
 			<tr>
 				<th>RO_Num</th>
@@ -80,19 +189,47 @@ if(!$link) {
 			</tr>
 
 			<?php
-
-			$query1="SELECT * FROM works_on";
-			$result1 = mysqli_query($link, $query1);
+			//If the user performs a search
+            if(isset($_GET["search2"]))
+            {
+				$search = $_GET["search2"];
+				$search = mysqli_real_escape_string($link, $search);
 				
-			while($WO=mysqli_fetch_assoc($result1)) {
-				echo "<tr>";
+				$query = "SELECT * FROM works_on WHERE RO_Num = $search or ID = $search";
+				
+				//If there are results...
+				if(mysqli_query($link, $query))
+				{
+					$result = mysqli_query($link, $query);	
+					
+					while($WO=mysqli_fetch_assoc($result)) 
+					{
+						echo "<tr>";
 
-				echo "<td>".$WO['RO_Num']."</td>";
+						echo "<td>".$WO['RO_Num']."</td>";
 
-				echo "<td>".$WO['ID']."</td>";
+						echo "<td>".$WO['ID']."</td>";
 
-				echo "</tr>";
-			} //End While
+						echo "</tr>";
+					} //End While					
+				}					
+			}
+
+			else
+			{
+				$query4 ="SELECT * FROM works_on";
+				$result4 = mysqli_query($link, $query4);
+					
+				while($WO=mysqli_fetch_assoc($result4)) {
+					echo "<tr>";
+
+					echo "<td>".$WO['RO_Num']."</td>";
+
+					echo "<td>".$WO['ID']."</td>";
+
+					echo "</tr>";
+				} //End While
+			}
 			?>
 		</table>
 	</body>
