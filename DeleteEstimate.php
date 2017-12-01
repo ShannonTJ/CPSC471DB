@@ -88,8 +88,8 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
 
         if(isset($_POST["deleteEstimate"])) {
-                mysqli_query($link, "DELETE FROM estimate WHERE estimate.Est_Num = '$_POST[EstID]'");
-                header('Location: View_Estimate.php');
+            mysqli_query($link, "DELETE FROM estimate WHERE estimate.Est_Num = '$_POST[EstID]'");
+            header('Location: View_Estimate.php');
         }
         
         if(isset($_POST["UpdateEstimateSubmit"])) {
@@ -117,8 +117,8 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 $check2 = False;
             }
 
-            if($check = False || $check2 = False) {
-                echo 'Location: FailedEstimate.php';
+            if($check == False || $check2 == False) {
+                header('Location: FailedEstimate.php');
             }
 
             while($est = mysqli_fetch_assoc($result)) {
@@ -145,7 +145,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 }
             }
             if($flag == True) {
-                echo 'Location: FailedEstimate.php';
+                header('Location: FailedEstimate.php');
             }
         }
         
