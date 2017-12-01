@@ -314,6 +314,32 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 
                 if(isset($_POST["modifyEmployeeSubmit"])) {
                     $flag = True;
+                    $check = True;
+                    $check2 = True;
+
+                    if($_POST["Emp_New_SIN"] != "") {
+                        while($emp = mysqli_fetch_assoc($result)) {
+                            if($emp['SIN'] == $_POST['New_SIN']) {
+                                $check = False;
+                                break;
+                            }
+                        }
+                    }
+
+                    if($_POST["Emp_New_Username"] != "") {
+                        while($emp = mysqli_fetch_assoc($result)) {
+                            if($emp['Est_Num'] == $_POST['Emp_New_Username']) {
+                                $check2 = False;
+                                break;
+                            }
+                        }
+                    }
+
+                    if($check == False || $check2 == False) {
+                        header('Location: FailedEmp.php');
+                    }
+
+
                     while($employee=mysqli_fetch_assoc($result)) {
                         if($employee['Username'] == $_POST['Emp_Old_Username'] && $employee['Password'] == $_POST['Emp_Old_Password']) {
                             $flag = False;
