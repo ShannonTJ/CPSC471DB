@@ -6,9 +6,6 @@ if(!$link) {
 }
 
 ?>
-
-
-
 <!DOCTYPE HTML>
 <html>
         <head>
@@ -25,8 +22,11 @@ if(!$link) {
             </div>   
             <div class="tableview">
                 <table width="700" border="1" cellpadding="1" cellspacing="1">
-                    <h2> Customer Information </h2>  
-                    <div class="taskbar">
+                    <div class="taskbar"> 
+                    <a href="http://localhost/cpsc471/DeleteCustomer.php"><img src="img/mod-del-cust.png"></a>
+                    <a href="http://localhost/cpsc471/DeleteVehicle.php"><img src="img/mod-del-vehicle.png"></a>
+                    <a href="http://localhost/cpsc471/DeleteInsurance.php"><img src="img/mod-del-ins.png"></a>
+                    <h2> Customer Information </h2> 
                     <form action ="View_CustomerInfo.php" method="GET">
 					<input type="text" name="search" placeholder="Enter a value"/>
 					<input type="submit" value="Search"/>

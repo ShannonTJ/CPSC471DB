@@ -11,7 +11,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
 <html>
         <head>
                 <title>
-                        Parts and Repair order
+                        Parts and Repair Order
                 </title>
                 <meta http-equiv="Content-Type" content="text/html; charset=iso=8859-1">
                 <link rel="stylesheet" type="text/css" href="style.css">
@@ -22,6 +22,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                      <div class = "heading">
                         <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
                     </div>
+                    <div class="estimate">
                         <form name = "InsertRO" action="" method="post">
 
                                 <table>
@@ -81,7 +82,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                         </tr>
 
                                         <tr>
-                                                <td colspan = "2" align = "center"><input type = "submit" name = "insertROSubmit" value = "Insert"> </td>
+                                                <td><input type = "submit" name = "insertROSubmit" value = "Insert"> </td>
                                         </tr>
 
                                 </table>
@@ -147,7 +148,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                         </tr>
 
                                         <tr>
-                                                <td colspan = "2" align = "center"><input type = "submit" name = "UpdateROSubmit" value = "Update"> </td>
+                                                <td><input type = "submit" name = "UpdateROSubmit" value = "Update"> </td>
                                         </tr>
 
                                 </table>
@@ -175,10 +176,12 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                         </tr>
 
                                         <tr>
-                                                <td colspan = "2" align = "center"><input type = "submit" name = "deleteROSubmit" value = "delete"> </td>
+                                                <td><input type = "submit" name = "deleteROSubmit" value = "Delete"> </td>
                                         </tr>
                                 </table>
+                            
                         </form>
+                    </div>
 
                         <?php
                         $checking = False;

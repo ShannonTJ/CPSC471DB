@@ -9,7 +9,7 @@
         <div class = "heading">
             <img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png">
         </div>
-        <div class =" failedParts">
+        <div class =" failed">
         <center>
             <h2> Please Enter a valid RO Number and PO Number</h2>
                 <form action = "Parts.php">

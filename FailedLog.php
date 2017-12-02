@@ -9,7 +9,7 @@
         <div class = "heading">
             <img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png">
         </div>
-        <div class =" failedlogin">
+        <div class =" failed">
         <center>
             <h2> Failed Login, please try again </h2>
                 <form action = "log.php">

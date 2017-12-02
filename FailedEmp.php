@@ -9,7 +9,7 @@
         <div class = "heading">
             <img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png">
         </div>
-        <div class =" failedEmp">
+        <div class =" failed">
         <center>
             <h2> Failed Insert, please enter in a unique SIN number and Username </h2>
                 <form action = "EmployeeDBConnection.php">

@@ -19,9 +19,10 @@ if(!$link) {
         <body>
              <div class = "heading">
                 <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
-                <h1> Repair Orders and Assignments </h1>
             </div>
             <div class ="taskbar">
+                <a href="http://localhost/cpsc471/Repair_Order.php"><img src="img/ins-mod-del-ro.png"></a>
+                <h2> Repair Orders </h2>
 			<form action ="View_Repair_Order.php" method="GET">
 			<input type="text" name="search" placeholder="Enter a value"/>
 			<input type="submit" value="Search"/>
@@ -176,6 +177,7 @@ if(!$link) {
 
 		<br>
 		    <div class ="taskbar">
+                        <h2> Repair Order Assignments </h2>
 			<form action ="View_Repair_Order.php" method="GET">
 			<input type="text" name="search2" placeholder="Enter a value"/>
 			<input type="submit" value="Search"/>

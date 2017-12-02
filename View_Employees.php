@@ -6,9 +6,6 @@ if(!$link) {
 }
 
 ?>
-
-
-
 <!DOCTYPE HTML>
 <html>
         <head>
@@ -21,12 +18,12 @@ if(!$link) {
         <body>
             <div class = "heading">
             <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
-            <h1> Employee Information </h1>
         </div>
             <div class="taskbar">
-                <a href="http://localhost/cpsc471/EmployeeDBConnection.php"><img src="img/insert-modify-del-emp.png"></a>
                 <a href="http://localhost/cpsc471/View_Bodyman.php"><img src="img/view-bodymen.png"></a>
+                <a href="http://localhost/cpsc471/EmployeeDBConnection.php"><img src="img/insert-modify-del-emp.png"></a>
                 <a href="http://localhost/cpsc471/View_Estimator.php"><img src="img/view-estimators.png"></a>
+                <h2> Employee Information </h2>
                 <form action ="View_Employees.php" method="GET">
                 <input type="text" name="search" placeholder="Enter a value"/>
                 <input type="submit" value="Search"/>

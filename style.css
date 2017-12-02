@@ -1,7 +1,6 @@
 * {
     background-color: #666666;
-    font-family: Roboto;
-    /*border: 1px solid #ff0000;*/
+    font-family: "Roboto", sans-serif;
 }
 
 .estimate table  { 
@@ -45,7 +44,7 @@
 .heading img {
     margin-top: 2%;
     height: 5%;
-    width: 20%;
+    width: 25%;
 }
 
 .taskbar {
@@ -77,9 +76,20 @@
 
 .tableview table {
     width: 100%;
+    border-collapse: collapse;
 }
 .tableview {
     text-align: center;
+}
+
+.tableview th, td {
+    padding: 8px;
+    text-align: center;
+    background-color: #707070;
+}
+
+.tableview tr, td {
+    background-color: #9c9c9c;
 }
 
 .login {
@@ -95,16 +105,8 @@ input {
     background-color: white;
 }
 
-.login input[type=submit] {
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 
-.failedlogin input[type=submit] {
+.failed input[type=submit] {
    width: 20%;
    font-size: 20px;
     background-color: white;
@@ -126,3 +128,8 @@ input {
     text-decoration: none;
     cursor: pointer;
 }
+
+.estimate input[type=radio]{
+    width: 10%;
+}
+

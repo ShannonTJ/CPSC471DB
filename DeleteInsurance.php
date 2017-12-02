@@ -18,7 +18,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         <div class = "heading">
             <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
         </div>
-        <div class ="Insurance">
+        <div class ="estimate">
         <form name = "InsuranceDeleteForm" action="" method="post">
                 <table>
                     <h2> <center> Delete Insurance </center> </h2>
@@ -33,7 +33,6 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 </table>
         </form>
 
-        <h2> <center> Delete Insured By </center></h2>
         <form name = "InsuredByDeleteForm" action="" method="post">
                 <table>
                     <h2> <center> Delete Insured By </center> </h2>

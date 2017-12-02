@@ -16,6 +16,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
             <div class = "heading">
                 <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
             </div>
+            <div class="estimate">
                 <form name = "EmployeeInsertForm" action="" method="post">
                     <table>
                         <tr>
@@ -87,47 +88,31 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                             <td>Enter Phone Number</td>
                             <td><input type = "number" name = "Emp_Phone_Num" placeholder = "4031234567" ></td>
                         </tr>
-
                         <tr>
                             <td>Select One</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="radio" value="Emp_Bodyman" name="Emp_type" required="required">
-                                <label for="Emp_Bodyman">Bodyman</label>
+                                <label><input type="radio" value="Emp_Bodyman" name="Emp_type" required="required">Bodyman</label>
+                                 <input type="number" name="BM_Hourly_Wage" placeholder="hourly wage in $ (ex. 15)">
                             </td>
                         </tr>
-
+                        
                         <tr>
                             <td>
-                                <input type="number" name="BM_Hourly_Wage" placeholder="hourly wage in $ (ex. 15)">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type="radio" value="Emp_Estimator" name="Emp_type">
-                                <label for="Emp_Estimator">Estimator</label>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
+                                <label><input type="radio" value="Emp_Estimator" name="Emp_type">Estimator</label>
                                 <input type="number" name="Est_Salary" placeholder="Salary in $ (ex. 40000)">
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <input type="radio" value="Emp_Neither" name="Emp_type">
-                                <label for="Emp_Estimator">Neither</label>
+                                <label><input type="radio" value="Emp_Neither" name="Emp_type">Neither</label>
                             </td>
                         </tr>
-
                         <tr>
-                            <td colspan = "2" align = "center"><input type = "submit" name = "insertEmployeeSubmit" value = "insert"> </td>
+                            <td><input type = "submit" name = "insertEmployeeSubmit" value = "Insert"> </td>
                         </tr>
-
                     </table>
                 </form>
 
@@ -246,7 +231,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                         </tr>
 
                         <tr>
-                            <td colspan = "2" align = "center"><input type = "submit" name = "modifyEmployeeSubmit" value = "Modify"> </td>
+                            <td><input type = "submit" name = "modifyEmployeeSubmit" value = "Modify"> </td>
                         </tr>
 
                     </table>
@@ -272,7 +257,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                         </tr>
 
                         <tr>
-                            <td colspan = "2" align = "center"><input type = "submit" name = "deleteEmployeeSubmit" value = "delete"> </td>
+                            <td><input type = "submit" name = "deleteEmployeeSubmit" value = "Delete"> </td>
                         </tr>
                     </table>
                 </form>
@@ -413,6 +398,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 }
 
                 ?>
+            </div>
         </center>
     </body>
 </html>

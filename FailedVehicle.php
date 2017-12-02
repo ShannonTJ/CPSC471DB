@@ -9,7 +9,7 @@
         <div class = "heading">
             <img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png">
         </div>
-        <div class =" failedVehChange">
+        <div class =" failed">
         <center>
             <h2> Failed Change, please enter a valid Plate Number and Customer Number </h2>
                 <form action = "DeleteVehicle.php">

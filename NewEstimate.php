@@ -19,7 +19,15 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
         <div class="estimate">
             <form name="InsertNewCustomer" action="" method="post">
                 <table>
-                    <tr> <td>Customer Information</td> </tr>
+                <tr>
+                    <td>
+                        <font size = "5">
+                        <b>
+                            Customer Information
+                        </b>
+                        </font>
+                    </td>
+               </tr>
                     <tr>
                         <td> First Name </td>
                         <td><input type = "text" name = "fName" maxlength = "25" required = "required"></td>  
@@ -46,7 +54,15 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                 </table>
               
                 <table>
-                    <tr> <td>Vehicle Information </td> </tr>
+                   <tr>
+                    <td>
+                        <font size = "5">
+                        <b>
+                            Vehicle Information
+                        </b>
+                        </font>
+                    </td>
+               </tr>
                         <tr>
                             <td> Plate Number </td>
                             <td><input type = "text" name = "plateNum" maxlength = "9" required = "required"></td>
@@ -72,7 +88,15 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                     </table>
             
                  <table>
-                     <tr> <td> Insurance Information </td> </tr>
+                     <tr>
+                        <td>
+                            <font size = "5">
+                            <b>
+                                Insurance Information
+                            </b>
+                            </font>
+                        </td>
+                   </tr>
                         <tr>
                             <td> Insurance Company </td>
                             <td><input type = "text" name = "Company" maxlength = "60" required = "required"></td>

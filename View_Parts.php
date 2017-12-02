@@ -19,12 +19,16 @@ if(!$link) {
         <body>
              <div class = "heading">
                 <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
-                <h1> Parts </h1>
             </div>
             <div class ="taskbar">
             <a href="http://localhost/cpsc471/Parts.php">
                     <img src="img/insert-modify-del-parts.png"> 
             </a>
+                <h2> Parts </h2>
+                <form action ="View_Parts.php" method="GET">
+                <input type="text" name="search" placeholder="Enter a value"/>
+                <input type="submit" value="Search"/>
+                </form>
             </div>
             <div class ="tableview">
                 <table width="1100" border="1" cellpadding="1" cellspacing="1">

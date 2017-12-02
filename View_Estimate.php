@@ -19,13 +19,13 @@ if(!$link) {
     <body>
         <div class = "heading">
             <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
-            <h1> Estimates </h1>
         </div>
         <div class="taskbar">
             <a href="http://localhost/cpsc471/NewEstimate.php"><img src="img/insert-estimate.png"></a>
             <a href="http://localhost/cpsc471/DeleteEstimate.php">
                 <img src="img/delete-modify-estimate.png">
             </a>
+            <h2> Estimates </h2>
             <form action ="View_Estimate.php" method="GET">
                 <input type="text" name="search" placeholder="Search Estimates"/>
                 <input type="submit" value="Search"/>

@@ -19,6 +19,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                     <div class = "heading">
                         <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
                   </div>
+                    <div class="estimate">
                         <form name = "InsertParts" action="" method="post">
                                 <table>
                                         <tr>
@@ -87,7 +88,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                         </tr>
 
                                         <tr>
-                                                <td colspan = "2" align = "center"><input type = "submit" name = "insertPartSubmit" value = "insert"> </td>
+                                                <td><input type = "submit" name = "insertPartSubmit" value = "Insert"> </td>
                                         </tr>
 
                                 </table>
@@ -162,7 +163,7 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                         </tr>
 
                                         <tr>
-                                                <td colspan = "2" align = "center"><input type = "submit" name = "ModifyPartSubmit" value = "Update"> </td>
+                                                <td><input type = "submit" name = "ModifyPartSubmit" value = "Update"> </td>
                                         </tr>
 
                                 </table>
@@ -189,10 +190,11 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
                                         </tr>
 
                                         <tr>
-                                                <td colspan = "2" align = "center"><input type = "submit" name = "deletePartSubmit" value = "delete"> </td>
+                                                <td><input type = "submit" name = "deletePartSubmit" value = "Delete"> </td>
                                         </tr>
                                 </table>
                         </form>
+                </div>
 
                         <?php
                         $check = False;
