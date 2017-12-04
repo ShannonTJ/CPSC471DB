@@ -15,7 +15,11 @@ mysqli_select_db($link, "cpsc471db") or ('Unable to connect to the Database');
             <a href="http://localhost/cpsc471/Home.php"><img src="https://d2oeydowngaei1.cloudfront.net/resources/front/images/carstar-logo.png"></a>
             <h1> Customer Information </h1>
         </div>
-     
+        <div class="taskbar">
+            <a href="http://localhost/cpsc471/EstimateInfo.php">
+                <img src="img/existing-cust.png">
+            </a>
+        </div>
         <div class="estimate">
             <form name="InsertNewCustomer" action="" method="post">
                 <table>
