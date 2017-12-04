@@ -82,13 +82,13 @@
     text-align: center;
 }
 
-.tableview th, td {
+.tableview th, .tableview td {
     padding: 8px;
     text-align: center;
     background-color: #707070;
 }
 
-.tableview tr, td {
+.tableview tr, .tableview td {
     background-color: #9c9c9c;
 }
 
