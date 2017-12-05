@@ -53,9 +53,8 @@ if(!$link) {
                 $query = "SELECT * FROM repair_order WHERE RO_Num = $search or ID = $search or Est_Num = $search
                 or Hours = $search or Cost = $search";
 
-                $query2 = "SELECT * FROM repair_order WHERE Job_Class = '$search' or Status = '$search'";
-
-                $query3 = "SELECT * FROM repair_order WHERE convert(varchar, Scheduled_In, 10) = '$search'";
+                $query2 = "SELECT * FROM repair_order WHERE Job_Class = '$search' or Status = '$search' 
+                or Scheduled_In = '$search' or Scheduled_Out = '$search'";
                 
                 //If there are results...
                 if(mysqli_query($link, $query))
@@ -112,35 +111,6 @@ if(!$link) {
 						echo "</tr>";
 					} //End While									
 				}
-				else if(mysqli_query($link, $query3))
-				{
-					$result = mysqli_query($link, $query3);		
-					
-					while($RO=mysqli_fetch_assoc($result)) {
-						echo "<tr>";
-
-						echo "<td>".$RO['RO_Num']."</td>";
-
-						echo "<td>".$RO['ID']."</td>";
-
-						echo "<td>".$RO['Est_Num']."</td>";
-
-						echo "<td>".$RO['Hours']."</td>";
-
-						echo "<td>".$RO['Cost']."</td>";
-
-						echo "<td>".$RO['Job_Class']."</td>";
-
-						echo "<td>".$RO['Status']."</td>";
-
-						echo "<td>".$RO['Scheduled_In']."</td>";
-
-						echo "<td>".$RO['Scheduled_Out']."</td>";
-
-						echo "</tr>";
-					} //End While								
-				}
-                
 			}
 
 			else
