@@ -48,10 +48,23 @@ if(!$link) {
 
                         <?php
 
-                        $query="SELECT * FROM parts";
-                        $result = mysqli_query($link, $query);
+					//If the user performs a search
+					if(isset($_GET["search"]))
+					{
+						$search = $_GET["search"];
+						$search = mysqli_real_escape_string($link, $search);
 
-                        while($parts=mysqli_fetch_assoc($result)) {
+						$query = "SELECT * FROM parts WHERE PO_Num = $search or RO_Num = $search or PartNum = $search
+						or Cost = $search";
+
+						$query2 = "SELECT * FROM parts WHERE Type = '$search' or Status = '$search' or Description = '$search'
+						or Order_Date = '$search' or Arrival_Date = '$search' or Invoice_Num = '$search' or Returned = '$search'";
+						
+						//If there are results...
+						if(mysqli_query($link, $query))
+						{
+							$result = mysqli_query($link, $query);
+							while($parts=mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
 
                                 echo "<td>".$parts['PO_Num']."</td>";
@@ -76,8 +89,76 @@ if(!$link) {
 
                                 echo "<td>".$parts['Cost']."</td>";
 
-                                echo "</tr>";
-                        } //End While
+                                echo "</tr>";								
+							}
+						}
+						
+						else if(mysqli_query($link, $query2))
+						{
+							$result = mysqli_query($link, $query2);	
+							while($parts=mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+
+                                echo "<td>".$parts['PO_Num']."</td>";
+
+                                echo "<td>".$parts['RO_Num']."</td>";
+
+                                echo "<td>".$parts['PartNum']."</td>";
+
+                                echo "<td>".$parts['Type']."</td>";
+
+                                echo "<td>".$parts['Status']."</td>";
+
+                                echo "<td>".$parts['Description']."</td>";
+
+                                echo "<td>".$parts['Order_Date']."</td>";
+
+                                echo "<td>".$parts['Arrival_Date']."</td>";
+
+                                echo "<td>".$parts['Invoice_Num']."</td>";
+
+                                echo "<td>".$parts['Returned']."</td>";
+
+                                echo "<td>".$parts['Cost']."</td>";
+
+                                echo "</tr>";								
+							}
+						}		
+					}											
+						
+						else
+						{
+							$query = "SELECT * FROM parts";
+							$result = mysqli_query($link, $query);
+
+							while($parts=mysqli_fetch_assoc($result)) {
+									echo "<tr>";
+
+									echo "<td>".$parts['PO_Num']."</td>";
+
+									echo "<td>".$parts['RO_Num']."</td>";
+
+									echo "<td>".$parts['PartNum']."</td>";
+
+									echo "<td>".$parts['Type']."</td>";
+
+									echo "<td>".$parts['Status']."</td>";
+
+									echo "<td>".$parts['Description']."</td>";
+
+									echo "<td>".$parts['Order_Date']."</td>";
+
+									echo "<td>".$parts['Arrival_Date']."</td>";
+
+									echo "<td>".$parts['Invoice_Num']."</td>";
+
+									echo "<td>".$parts['Returned']."</td>";
+
+									echo "<td>".$parts['Cost']."</td>";
+
+									echo "</tr>";
+							} //End While
+						}
                         ?>
                 </table>
             </div>
