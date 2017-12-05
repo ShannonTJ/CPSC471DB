@@ -55,10 +55,9 @@ if(!$link) {
                                 $query = "SELECT * FROM employee WHERE ID = $search or SIN = $search or Phone_Num = $search";
 
                                 $query2 = "SELECT * FROM employee WHERE F_Name = '$search' or M_Init = '$search'
-                                or L_Name = '$search' or Sex = '$search' or Birth_Date = '$search' or Address = '$search'";
+                                or L_Name = '$search' or Sex = '$search' or Start_Date = '$search' or Birth_Date = '$search' 
+                                or Address = '$search'";
 
-                                $query3 = "SELECT * FROM employee WHERE convert(varchar, Start_Date, 10) = '$search'";
-                                echo $query3;
 
                                 //If there are results...
                                 if(mysqli_query($link, $query))
@@ -124,12 +123,7 @@ if(!$link) {
                                                 echo "</tr>";
                                                 //End While
                                         }					
-                                }
-                                else if(mysqli_query($link, $query3))
-                                {
-                                        $result = mysqli_query($link, $query3);	
-                                        echo "DIDIIIIT";
-                                }			
+                                }	
                         }
 
                         else
