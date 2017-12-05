@@ -50,10 +50,9 @@ if(!$link) {
                             $search = $_GET["search"];
                             $search = mysqli_real_escape_string($link, $search);
 
-                            $query = "SELECT * FROM estimate WHERE Est_Num = $search or ID = $search or Plate_Num = $search 
-                            or Hours = $search or Cost = $search";
+                            $query = "SELECT * FROM estimate WHERE Est_Num = $search or ID = $search or Hours = $search or Cost = $search";
 
-                            $query2 = "SELECT * FROM estimate WHERE Job_Class = '$search' or Status = '$search'";		
+                            $query2 = "SELECT * FROM estimate WHERE Job_Class = '$search' or Plate_Num = '$search' or Status = '$search'";		
 
                             //If there are results...
                             if(mysqli_query($link, $query))
